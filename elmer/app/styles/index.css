@@ -1,0 +1,372 @@
+/*-- HTML5 Boilerplate. -----------------------------------------------------*/
+
+@import "../../vendor/h5bp/css/normalize.css";
+@import "../../vendor/h5bp/css/main.css";
+
+/*-- Application stylesheets. -----------------------------------------------*/
+/* 
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com 
+Twitter: @rich_clark
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000; 
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;   
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+
+/*Navigation styles*/
+body {
+	background: url(../images/purty_wood.png);
+}
+
+#primary-navigation {
+
+}
+.child-categories {
+  display: table;
+  width: 100%;
+  min-width: 450px;
+  box-shadow: 0px 2px 5px black; 
+}
+.child-categories li {
+  display: table-cell;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  min-height: 150px;
+  min-width: 70px;
+  line-height: 4.5em;
+  text-align: center;
+}
+.child-categories li:last-child {
+  border-right: 0;
+}
+
+.child-categories li a {
+/*	z-index: 0;
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+*/
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+	text-indent: -9999px;
+	white-space: nowrap;
+}
+.category > ul { display: none; }
+.category a { color: inherit; }
+
+.active_ > ul {
+	display: table;
+	position: absolute;
+	top: 100%;
+	left: 0;
+}
+
+
+.child-categories {
+	position: relative;
+}
+.category-name {
+	position: relative;
+	z-index: 3;
+	font-size: 36px;
+	color: #fff;
+	font-family: Helvetica;
+	opacity: 0.85;
+	text-shadow: 1px 1px 7px rgba(150, 150, 150, 0.3);
+	pointer-events: none;
+}
+.category-name + span {
+	opacity: 0.9;
+  margin-top: -5em;
+/*	position: absolute;
+	top: 0;
+	left: 0;
+*/	width: 100%;
+	height: 100%;
+	display: block;
+	z-index: 0;
+}
+  .top-nav {
+    margin-bottom: 15px;
+  }
+  .nav_mens .top-nav,
+  .nav_womens .top-nav,
+  .nav_tech .top-nav,
+  .nav_media .top-nav,
+  .nav_home .top-nav,
+  .nav_art .top-nav,
+  .nav_other .top-nav {
+    margin-bottom: 75px;
+  }
+
+  .nav_mens.nav_clothing.nav_bottoms .top-nav,
+  .nav_mens.nav_clothing.nav_tops .top-nav,
+  .nav_mens.nav_clothing .top-nav,
+  .nav_mens.nav_shoes .top-nav,
+  .nav_mens.nav_accessories .top-nav {
+    margin-bottom: 150px;
+  }
+  .nav_mens.nav_clothing.nav_bottoms .top-nav,
+  .nav_mens.nav_clothing.nav_tops .top-nav,
+  .nav_mens.nav_clothing.nav_outerwear .top-nav,
+  .nav_mens.nav_clothing.nav_suits .top-nav {
+    margin-bottom: 225px;
+  }
+
+  .nav_mens .nav_mens > ul,
+  .nav_womens .nav_womens > ul,
+  .nav_tech .nav_tech > ul,
+  .nav_media .nav_media > ul,
+  .nav_home .nav_home > ul,
+  .nav_art .nav_art > ul,
+  .nav_other .nav_other > ul {
+	display: table;
+	position: absolute;
+	z-index: 3;
+	top: 100%;
+	left: 0;
+	width: 100%;
+  }
+
+  .nav_mens.nav_clothing.nav_tops .nav_mens .nav_clothing .nav_tops > ul,
+  .nav_mens.nav_clothing.nav_bottoms .nav_mens .nav_clothing .nav_bottoms > ul,
+  .nav_mens.nav_clothing.nav_tops .nav_mens .nav_clothing .nav_tops > ul,
+  .nav_mens.nav_clothing .nav_mens .nav_clothing > ul,
+  .nav_mens.nav_shoes .nav_mens .nav_shoes > ul,
+  .nav_mens.nav_accessories .nav_mens .nav_accessories > ul {
+  display: table;
+  position: absolute;
+  z-index: 3;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  }
+
+/*Main application*/
+.application-name {
+  position: fixed;
+  opacity: 0.4;
+  font-weight: bold;
+  top: 5px;
+  right: 5px;
+  pointer-events: none;
+}
+.total-products {
+  position: absolute;
+  left: 20px;
+  min-width: 200px;
+  padding: 20px 15px;
+  background-color: rgba(224,224,224,1);
+}
+.total-products strong {
+  font-size: 3em;
+}
+.category-nav {
+list-style: none;
+display: table;
+width: 100%;
+margin-top: -15px;
+}
+.category-nav li { 
+  display: table-cell;
+  border-right: 2px solid black;
+  min-width: 80px;
+}
+.category-nav li:last-child { 
+  border-right: 0; 
+}
+.category-nav li a {
+  display: block;
+  width: 100%;
+  background-color: rgba(224,224,224,0.6);
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  line-height: 2.5;
+}
+.category-nav li a:hover {
+  background-color: rgba(224,224,224,1);  
+}
+.category-list {
+  width: 100%;
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  text-align: center;
+/*  white-space: nowrap;
+*/
+}
+.category-list li {
+  display: inline-block;
+  margin: 0 0 15px !important;
+  padding: 0 !important;
+  height: 100%;
+  width: 90%;
+  overflow: hidden;
+  position: relative;
+}
+#content-pane {
+  text-align: center;
+}
+.category-list li a {
+  position: relative;
+}
+.category-list li img {
+  max-width: 100%;
+  overflow: auto;
+}
+.category-list .page-title {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  z-index: 10;
+  font-size: 16px;
+  color: #000;
+  line-height: 1.2;
+  text-align: left;
+  display: block;
+  padding: 10px;
+  background-color: rgba(224,224,224,0.6);
+}
+/*Avatar and users*/
+.user-avatar {
+  position: absolute !important;
+  color: inherit;
+  text-decoration: none;
+}
+.user-name {
+  font-weight: bold;
+  color: white;
+  line-height: 50px;
+  position: absolute;
+  margin-left: 5px;
+  white-space: nowrap;
+/*
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+*/
+}
+.user-avatar img {
+  width: 50px;
+ -moz-border-radius:52px;
+ -webkit-border-radius:52px;
+ border-radius:52px;
+ margin-left: 5px;
+}
+/*
+
+:target {
+  -webkit-animation: highlight 1s ease;  
+  -moz-animation: highlight 1s ease;
+  -webkit-transform: translateX(20px); 
+  -moz-transform: translateX(20px); 
+  -ms-transform: translateX(20px); 
+  -o-transform: translateX(20px);     
+}
+@-webkit-keyframes highlight {
+  0% { border-left-color: red; }
+  100% { border-left-color: white; }
+}
+@-moz-keyframes highlight {
+  0% { border-left-color: red; }
+  100% { border-left-color: white; }
+}  
+*/
