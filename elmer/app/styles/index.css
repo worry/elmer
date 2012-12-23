@@ -116,6 +116,9 @@ body {
 #primary-navigation {
 
 }
+.product-view #primary-navigation {
+  margin-top: -4.5em;
+}
 .child-categories {
   display: table;
   width: 100%;
@@ -172,6 +175,7 @@ body {
 	opacity: 0.85;
 	text-shadow: 1px 1px 7px rgba(150, 150, 150, 0.3);
 	pointer-events: none;
+  margin-left: -11px;
 }
 .category-name + span {
   margin-top: -5.5em;
@@ -248,7 +252,7 @@ body {
 /*Main application*/
 .application-name {
   position: fixed;
-  opacity: 0.4;
+  opacity: 0.0;
   font-weight: bold;
   top: 5px;
   right: 5px;
@@ -270,7 +274,6 @@ list-style: none;
 display: table;
 width: 100%;
 margin-top: -25px;
-font-size: ;
 }
 .category-nav li { 
   display: table-cell;
@@ -285,9 +288,8 @@ font-size: ;
   display: block;
   width: 100%;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 26px;
 }
-
 .category-list {
   width: 100%;
   list-style: none;
@@ -338,7 +340,7 @@ font-size: ;
 }
 .user-name {
   font-weight: bold;
-  color: white;
+  color: black;
   line-height: 50px;
   position: absolute;
   margin-left: 5px;
@@ -355,18 +357,49 @@ font-size: ;
  margin-left: 5px;
 }
 
+/*Product details*/
+.product-details {
+  padding-top: 20px;
+  position: relative;
+  display: inline-block;
+}
+.product-details h2 {
+  font-size: 24px;
+  width: 100%;
+  margin: 10px auto 10px;
+  position: absolute;
+}
+.product-details a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+}
+.product-details-content {
+  position: absolute;
+  top: 20px;
+  left: 100%;
+  margin-left: 5px;
+  padding-top: 52px;
+  padding-left: 60px;
+}
+.product-details-content .user-avatar {
+  left: 0;
+  top: 0;
+}
+
 /*wrapper tests*/
 
 .category a,
 .category-nav a {
   display: block;
-  background-image: url('../images/diag-line-border-bottom-white.png'), url('../images/diag-line-border-right-white.png'), url('../images/diag-line-white.png'), url('../images/diag-line-white.png');
-  background-position: 0 100%, 100% 0, 100% 100%, 0 100%;
+  background-image: url('../images/diag-line-white.png'), url('../images/diag-line-border-bottom-white.png'), url('../images/diag-line-border-right-white.png'), url('../images/diag-line-white.png'), url('../images/diag-line.png'), url('../images/black-padded.png');
+  background-position: 100% 100%, 0 100%, 100% 0, 100% 100%, 0 100%, 100% -1px;
   padding-bottom: 11px;
   padding-right: 11px;
   overflow: hidden;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-repeat: no-repeat no-repeat, no-repeat, no-repeat, no-repeat, repeat-x, no-repeat;
   margin-bottom: 10px;
+  overflow-x: hidden;
 }
 .category a,
 .category-nav a {
@@ -375,7 +408,7 @@ font-size: ;
 }
 .category a,
 .category-nav a {
-  color: black !important;
+  color: #fff !important;
 }
 .category a:hover,
 .category-nav a:hover {
@@ -385,7 +418,8 @@ font-size: ;
 
 .category-name + span,
 .category a,
-.category-nav a {
+.category-nav a,
+#primary-navigation {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
