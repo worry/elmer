@@ -148,7 +148,7 @@
                               console.log (product_category_list);
                               $('#content-pane').html(
                                 function() {
-                                  var productSingle = '<nav class="category-nav">' + product_category_list + '</nav><section class="product-details">' + '<a href=' + product.buy_url + ' target="_blank"><img src=' + product.image + '/><br /><h2>' + product.page_title + '</h2>' + '</a><div class="product-details-content"> <a class="user-avatar" href="http://svpply.com/' + product.user.id + '" target="_blank"><img src=' + product.user.avatar + ' /><span class="user-name">' + product.user.display_name + '</span></a>'+ '<span class="price"><strong>Price:</strong>' + product.price + '</span></div></section>';
+                                  var productSingle = '<nav class="category-nav">' + product_category_list + '</nav><section class="product-details">' + '<a href=' + product.buy_url + ' target="_blank"><img src=' + product.image + '><br /><h2>' + product.page_title + '</h2>' + '</a><div class="product-details-content"> <a class="user-avatar" href="http://svpply.com/' + product.user.id + '" target="_blank"><img src=' + product.user.avatar + ' /><span class="user-name">' + product.user.display_name + '</span></a>'+ '<span class="price"><strong>Price:</strong>' + product.price + '</span></div></section>';
                                   return productSingle;
                                 }
 
