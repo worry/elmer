@@ -120,7 +120,7 @@ body {
 }
 
 .product-view #primary-navigation {
-  margin-top: -4.5em;
+  margin-top: -8.5em;
 }
 .child-categories {
   display: table;
@@ -193,29 +193,36 @@ body {
   .top-nav {
     margin-bottom: 15px;
   }
-  .nav_mens .top-nav,
-  .nav_womens .top-nav,
-  .nav_tech .top-nav,
-  .nav_media .top-nav,
-  .nav_home .top-nav,
-  .nav_art .top-nav,
-  .nav_other .top-nav {
-    margin-bottom: 75px;
+  .nav_mens #content-pane,
+  .nav_womens #content-pane,
+  .nav_tech #content-pane,
+  .nav_media #content-pane,
+  .nav_home #content-pane,
+  .nav_art #content-pane,
+  .nav_other #content-pane {
+    margin-top: 155px;
   }
 
-  .nav_mens.nav_clothing.nav_bottoms .top-nav,
-  .nav_mens.nav_clothing.nav_tops .top-nav,
-  .nav_mens.nav_clothing .top-nav,
-  .nav_mens.nav_shoes .top-nav,
-  .nav_mens.nav_accessories .top-nav {
-    margin-bottom: 150px;
+  .nav_mens.nav_clothing.nav_bottoms #content-pane,
+  .nav_mens.nav_clothing.nav_tops #content-pane,
+  .nav_mens.nav_clothing #content-pane,
+  .nav_mens.nav_shoes #content-pane,
+  .nav_mens.nav_accessories #content-pane {
+    margin-top: 230px;
   }
-  .nav_mens.nav_clothing.nav_bottoms .top-nav,
-  .nav_mens.nav_clothing.nav_tops .top-nav,
-  .nav_mens.nav_clothing.nav_outerwear .top-nav,
-  .nav_mens.nav_clothing.nav_suits .top-nav {
-    margin-bottom: 225px;
+  .nav_mens.nav_clothing.nav_bottoms #content-pane,
+  .nav_mens.nav_clothing.nav_tops #content-pane,
+  .nav_mens.nav_clothing.nav_outerwear #content-pane,
+  .nav_mens.nav_clothing.nav_suits #content-pane {
+    margin-top: 305px;
   }
+.product-view #content-pane {
+  margin-top: 80px !important;
+}
+.product-view .top-nav {
+  opacity: 0;
+  pointer-events: none;
+}
 
   .nav_mens .nav_mens > ul,
   .nav_womens .nav_womens > ul,
