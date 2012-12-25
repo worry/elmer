@@ -117,6 +117,9 @@ body {
 #primary-navigation {
   position: absolute;
   top: 0;
+  /* Cute background, only shown on hover or select. */
+  background: url(../images/roeder-flowers.png) 0 0 no-repeat;
+  background-size: 98.8% 20px;
 }
 
 .product-view #primary-navigation {
@@ -423,7 +426,7 @@ margin-top: -80px;
 .category a {
   display: block;
   background-image: url('../images/diag-line.png'), url('../images/diag-line-border-right-white.png'), url('../images/diag-line-white.png'), url('../images/diag-line-border-bottom-white.png'), url('../images/diag-line-white.png');
-  background-position: 100% 100%, 100% 0, 100% 100%, 0 100%, 100% 100%;
+  background-position: 100% 100%, 100% 0, 100% 100%, -11px 100%, 100% 100%;
   padding-bottom: 11px;
   padding-right: 11px;
   overflow: hidden;
@@ -438,7 +441,7 @@ margin-top: -80px;
   /*Moving background image*/
 /*  background-position: 100% 100%, 100% 7px, 100% 61px, 11px 100%, 100% 100%;
 */
-  background-position: 100% 100%, 100% 0, 100% 100%, 0 100%, 100% 100%;
+  background-position: 100% 100%, 100% 0, 100% 100%, -11px 100%, 100% 100%;
 
 }
 .category a:after {
