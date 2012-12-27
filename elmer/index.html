@@ -55,6 +55,7 @@
                 routes:{
                     "products/:id":"productAction", //This matches app/products/* and assigns * to a variable called "product"
                     "shop*page":"fullAction", //This matches app/shop/* and assigns * to a variable called "product"
+                    "login*page":"loginAction", //This simply matches any urls that weren't caught above and assigns it to "page"
                     "*page":"defaultAction" //This simply matches any urls that weren't caught above and assigns it to "page"
                 },
 
@@ -66,6 +67,16 @@
                         //Now we have a url lets get the data
                         this.loadRestfulData(restfulPageUrl);
                         console.log('default action');
+                    }
+                },
+                loginAction:function (page) {
+                    if (page) {
+                        routerLocation = 'loginAction';
+                        //Once the default action is called we want to construct a link to our restful service
+                        var restfulPageUrl = this.restfulUrl + page + 'page';
+                        //Now we have a url lets get the data
+                        this.loadRestfulData(restfulPageUrl);
+                        console.log('login action');
                     }
                 },
                 productAction:function (product) {
@@ -123,9 +134,11 @@
                                 page_categories: data.response.product.categories,                               
                                 page_title: data.response.product.page_title, 
                                 buy_url: data.response.product.page_url,
-                                price: data.response.product.price, 
+                                price: data.response.product.formatted_price, 
+                                saves: data.response.product.saves, 
                                 image: data.response.product.image,
-                                user: data.response.product.user
+                                user: data.response.product.user,
+                                store: data.response.product.store
                               };
                               // Keeping track of these in the console, for peeling.
                               console.log(product.page_title);
@@ -148,12 +161,12 @@
                               console.log (product_category_list);
                               $('#content-pane').html(
                                 function() {
-                                  var productSingle = '<nav class="category-nav">' + product_category_list + '</nav><section class="product-details">' + '<a href=' + product.buy_url + ' target="_blank"><img src=' + product.image + '><br /><h2>' + product.page_title + '</h2>' + '</a><div class="product-details-content"> <a class="user-avatar" href="http://svpply.com/' + product.user.id + '" target="_blank"><img src=' + product.user.avatar + ' /><span class="user-name">' + product.user.display_name + '</span></a>'+ '<span class="price"><strong>Price:</strong>' + product.price + '</span></div></section>';
+                                  var productSingle = '<nav class="category-nav">' + product_category_list + '</nav><section class="product-details">' + '<a href=' + product.buy_url + ' target="_blank"><img src=' + product.image + '><br /><h2>' + product.page_title + '</h2>' + '</a><div class="product-details-content"> <a class="user-avatar" href="http://svpply.com/' + product.user.id + '" target="_blank"><img src=' + product.user.avatar + ' /><span class="user-name">' + product.user.display_name + '</span></a>'+ '<span class="price"><strong>Price: </strong>' + product.price + '</span>' + '<br /><span class="saves"><strong>Saves: </strong>' + product.saves + '</span>' + '<br /><span class="saves"><strong>Found at: </strong><a href=' + product.store.url + ' target="_blank">' + product.store.slug + '</a></span></div></section>';
                                   return productSingle;
                                 }
 
                               );
-                              $('body').addClass('product-view');
+                              $('body').addClass('product-view').animate({ scrollTop: 0 }, "slow");
                           }
                       });
                   }
@@ -190,6 +203,9 @@
                           }
                       });
 
+                  }
+                  else if (routerLocation == 'loginAction'){
+                    $('#content-pane').html('login Action');
                   }
                   else {
                     $('#content-pane').html('oops');
@@ -1123,6 +1139,12 @@
       <span style="background-color:#273142; color:#666F7E;">
       <a href="#shop/other">Link Here</a>
               </span>
+    </li>
+    <li class="category login-category">
+      <span class="category-name">Login</span>
+      <span style="background-color:#fff; color:#000;">
+        <a href="#login">Link Here</a>
+      </span>
     </li>
   </ul>
   </nav>
