@@ -97,12 +97,6 @@
                     $('body').attr({class: ''});
                     categoryList = category.replace(/\//g,' nav_');
                     $('body').addClass(categoryList);
-
-
-
-                    // var restfulPageUrl = this.restfulUrl + 'shop/categories' + '.json';
-
-                    //Now we have a url lets get the data
                     this.loadRestfulData(restfulPageUrl);
                     console.log(restfulPageUrl);
                     console.log(category);
@@ -182,6 +176,7 @@
                               // console.log(data.response.product.page_title);
                               // $('#content-pane').text(data);
                               // Doin' it wrong.  Need to make a model to contain Product, then a collection.
+                              $('body').addClass(categoryList);
                               var category = { 
                                 products: data.response.products,
                                 total_products: data.response.total_products                              
@@ -418,9 +413,10 @@
                   </span>
                 </li>
               </ul>
-              <span class="category-name">Bags</span>
               <span style="background-color:#782825; color:#FF5B54;">
-              <a href="#shop/mens/accessories/bags">Link Here</a>
+                <a href="#shop/mens/accessories/bags">
+                  <span class="category-name">Bags</span>
+                </a>
               </span>
             </li>
             <li class="category nav_watches">
