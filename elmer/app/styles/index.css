@@ -129,8 +129,6 @@ body {
   display: table;
   width: 100%;
   min-width: 450px;
-/*  box-shadow: 0px 2px 5px black; 
-*/
 }
 .child-categories li {
   display: table-cell;
@@ -172,6 +170,7 @@ body {
 .child-categories {
 	position: relative;
 }
+
 .category-name {
 	position: relative;
 	z-index: 1;
@@ -195,9 +194,15 @@ body {
 	z-index: 0;
   background-color: transparent !important;
 }
+
+
+
+
+
   .top-nav {
     margin-bottom: 15px;
   }
+
   .nav_mens #content-pane,
   .nav_womens #content-pane,
   .nav_tech #content-pane,
@@ -459,6 +464,9 @@ margin-top: -80px;
   top: -11px;
   left: -11px;
 }
+.login-category {
+  display: none !important;
+}
 .login-category a:after {
   display: block;
   content: "";
@@ -528,10 +536,6 @@ margin-top: -80px;
 .category-nav:hover > span a {
   color: #b5b5b5 !important;
 }
-/*.login-category .category-name {
-  color: #000 !important;
-}
-*/
 .category:hover > .category-name {
     text-shadow: 11px 11px #fff;
 }

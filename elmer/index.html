@@ -49,13 +49,13 @@
             var Product = Backbone.Model.extend();
 
             var restfulApp = Backbone.Router.extend({
-                restfulUrl:"https://api.svpply.com/v1/", //This is a free service to store key pair values
+                restfulUrl:"https://api.svpply.com/v1/",
                 dataType: 'jsonp',
                 //Routes tell the app what to do
                 routes:{
                     "products/:id":"productAction", //This matches app/products/* and assigns * to a variable called "product"
                     "shop*page":"fullAction", //This matches app/shop/* and assigns * to a variable called "product"
-                    "login*page":"loginAction", //This simply matches any urls that weren't caught above and assigns it to "page"
+                    "login*page":"loginAction", //This simply matches login and assigns it to "page"
                     "*page":"defaultAction" //This simply matches any urls that weren't caught above and assigns it to "page"
                 },
 
@@ -161,7 +161,7 @@
                               console.log (product_category_list);
                               $('#content-pane').html(
                                 function() {
-                                  var productSingle = '<nav class="category-nav">' + product_category_list + '</nav><section class="product-details">' + '<a href=' + product.buy_url + ' target="_blank"><img src=' + product.image + '><br /><h2>' + product.page_title + '</h2>' + '</a><div class="product-details-content"> <a class="user-avatar" href="http://svpply.com/' + product.user.id + '" target="_blank"><img src=' + product.user.avatar + ' /><span class="user-name">' + product.user.display_name + '</span></a>'+ '<span class="price"><strong>Price: </strong>' + product.price + '</span>' + '<br /><span class="saves"><strong>Saves: </strong>' + product.saves + '</span>' + '<br /><span class="saves"><strong>Found at: </strong><a href=' + product.store.url + ' target="_blank">' + product.store.slug + '</a></span></div></section>';
+                                  var productSingle = '<nav class="category-nav">' + product_category_list + '</nav><section class="product-details">' + '<a href=' + product.buy_url + ' target="_blank"><img src=' + product.image + '><br /><h2>' + product.page_title + '</h2>' + '</a><div class="product-details-content"> <a class="user-avatar" href="http://svpply.com/' + product.user.id + '" target="_blank"><img src=' + product.user.avatar + ' /><span class="user-name">' + product.user.display_name + '</span></a>'+ '<ul class="product-details-list"><li><span class="price"><strong>Price: </strong>' + product.price + '</span></li>' + '<li><span class="saves"><strong>Saves: </strong>' + product.saves + '</span></li>' + '<li><span class="saves"><strong>Found at: </strong><a href=' + product.store.url + ' target="_blank">' + product.store.name + '</a></span></li></ul></div></section>';
                                   return productSingle;
                                 }
 
