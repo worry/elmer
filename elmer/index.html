@@ -42,186 +42,8 @@
     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
 
+    <script type="text/javascript" src="/app/elmer.js"></script>
 
-    <script type="text/javascript">
-        (function ($) {
-
-            var Product = Backbone.Model.extend();
-
-            var restfulApp = Backbone.Router.extend({
-                restfulUrl:"https://api.svpply.com/v1/",
-                dataType: 'jsonp',
-                //Routes tell the app what to do
-                routes:{
-                    "products/:id":"productAction", //This matches app/products/* and assigns * to a variable called "product"
-                    "shop*page":"fullAction", //This matches app/shop/* and assigns * to a variable called "product"
-                    "login*page":"loginAction", //This simply matches login and assigns it to "page"
-                    "*page":"defaultAction" //This simply matches any urls that weren't caught above and assigns it to "page"
-                },
-
-                defaultAction:function (page) {
-                    if (page) {
-                        routerLocation = 'page';
-                        //Once the default action is called we want to construct a link to our restful service
-                        var restfulPageUrl = this.restfulUrl + page + 'page';
-                        //Now we have a url lets get the data
-                        this.loadRestfulData(restfulPageUrl);
-                        console.log('default action');
-                    }
-                },
-                loginAction:function (page) {
-                    if (page) {
-                        routerLocation = 'loginAction';
-                        //Once the default action is called we want to construct a link to our restful service
-                        var restfulPageUrl = this.restfulUrl + page + 'page';
-                        //Now we have a url lets get the data
-                        this.loadRestfulData(restfulPageUrl);
-                        console.log('login action');
-                    }
-                },
-                productAction:function (product) {
-                    routerLocation = 'productAction';
-                    //Once the default action is called we want to construct a link to our restful service
-                    var restfulPageUrl = this.restfulUrl + 'products/' + product + '.jsonp';
-                    //Now we have a url lets get the data
-                    this.loadRestfulData(restfulPageUrl);
-                        console.log('product action');
-
-                },
-                fullAction:function (category) {
-                    routerLocation = 'fullAction';
-                    //Once the default action is called we want to construct a link to our restful service
-                    //This one may be too specific to be the full action, because it starts with the shop category.
-                    //Category list seems to not work when navigating to a new page.
-                    var restfulPageUrl = this.restfulUrl + 'shop' + category + '.json';
-                    $('body').attr({class: ''});
-                    categoryList = category.replace(/\//g,' nav_');
-                    $('body').addClass(categoryList);
-                    this.loadRestfulData(restfulPageUrl);
-                    console.log(restfulPageUrl);
-                    console.log(category);
-                    console.log('full action');
-                },
-                loadRestfulData:function (pageUrl) {
-
-
-                    //Set the content pane to a loading screen
-                    $('#content-pane').text('loading data...');
-
-                    //Load the data in using jQuerys ajax call
-
-
-
-                    if (routerLocation == 'productAction'){
-                      // If product? Add later.
-                      $.ajax({
-                          url:pageUrl,
-                          dataType:'jsonp',
-                          success:function (data) {
-                            console.log('productAction');
-                              //Once we receive the data, set it to the content pane.
-                              console.log(data);
-                              // console.log(data.response.product.page_title);
-                              // $('#content-pane').text(data);
-                              // Doin' it wrong.  Need to make a model to contain Product, then a collection.
-                              var product = { 
-                                page_categories: data.response.product.categories,                               
-                                page_title: data.response.product.page_title, 
-                                buy_url: data.response.product.page_url,
-                                price: data.response.product.formatted_price, 
-                                saves: data.response.product.saves, 
-                                image: data.response.product.image,
-                                user: data.response.product.user,
-                                store: data.response.product.store
-                              };
-                              // Keeping track of these in the console, for peeling.
-                              console.log(product.page_title);
-
-                              console.log(product.page_categories.forEach(
-                                function (el, i) { 
-                                  console.log (el.name) 
-                                })
-                              );
-
-                              // Empty out category list.
-                              var product_category_list = '';
-                              product.page_categories.forEach(
-                              function (el, i) {
-                                // Mash, mangle, cut and strip my way to a url that matches something in my routes.
-                                var product_category_url = el.url.replace("https://api.svpply.com/v1/", "#").replace(".json", "");
-                                var categorySingle = '<li><a href=' + product_category_url + '>' + el.name + '</a></li>';
-                                product_category_list = product_category_list + categorySingle;
-                              });
-                              console.log (product_category_list);
-                              $('#content-pane').html(
-                                function() {
-                                  var productSingle = '<nav class="category-nav">' + product_category_list + '</nav><section class="product-details">' + '<a href=' + product.buy_url + ' target="_blank"><img src=' + product.image + '><br /><h2>' + product.page_title + '</h2>' + '</a><div class="product-details-content"> <a class="user-avatar" href="http://svpply.com/' + product.user.id + '" target="_blank"><img src=' + product.user.avatar + ' /><span class="user-name">' + product.user.display_name + '</span></a>'+ '<ul class="product-details-list"><li><span class="price"><strong>Price: </strong>' + product.price + '</span></li>' + '<li><span class="saves"><strong>Saves: </strong>' + product.saves + '</span></li>' + '<li><span class="saves"><strong>Found at: </strong><a href=' + product.store.url + ' target="_blank">' + product.store.name + '</a></span></li></ul></div></section>';
-                                  return productSingle;
-                                }
-
-                              );
-                              $('body').addClass('product-view').animate({ scrollTop: 0 }, "slow");
-                          }
-                      });
-                  }
-                  else if (routerLocation == 'fullAction'){
-
-                      $.ajax({
-                          url:pageUrl,
-                          dataType:'jsonp',
-                          success:function (data) {
-                            console.log('fullAction');
-                              //Once we receive the data, set it to the content pane.
-                              console.log(data);
-                              // console.log(data.response.product.page_title);
-                              // $('#content-pane').text(data);
-                              // Doin' it wrong.  Need to make a model to contain Product, then a collection.
-                              $('body').addClass(categoryList);
-                              var category = { 
-                                products: data.response.products,
-                                total_products: data.response.total_products                              
-                              };
-                              var product_list = '';
-                              category.products.forEach(
-                              function (el, i) {
-                                var productSingle = '<li><a href=#products/' + el.id + '><img src=' + el.image + ' /><span class="page-title">' + el.page_title + '</span></a> <a class="user-avatar" href="http://svpply.com/' + el.user.id + '" target="_blank"><img src=' + el.user.avatar + ' /><span class="user-name">' + el.user.display_name + '</span></a> </li>';
-                                product_list = product_list + productSingle;
-                              });
-                              console.log (product_list);
-                              $('#content-pane').html(
-                                function() {
-                                  var productSingle = '<section class="category-contents"><span class="total-products">Total Products: <strong>' + category.total_products + '</strong></span><ul class="category-list">' + product_list + '</ul></section>';
-                                  return productSingle;
-                                }
-
-                              );
-                          }
-                      });
-
-                  }
-                  else if (routerLocation == 'loginAction'){
-                    $('#content-pane').html('login Action');
-                  }
-                  else {
-                    $('#content-pane').html('oops');
-                  };
-
-
-//  Trigger initial response for categories.
-
-
-
-
-                }
-            });
-
-            new restfulApp;
-            //Initiate a new history and controller class
-            Backbone.emulateHTTP = true;
-            Backbone.emulateJSON = true;
-            Backbone.history.start();
-        })(jQuery);
-    </script>
 </head>
 
 <body>
@@ -516,47 +338,47 @@
     </li>
     <li class="category nav_womens">
       <ul class="child-categories">
-        <li class="category">
+        <li class="category nav_clothing">
             <ul class="child-categories">
               <li class="category">
-                <span style="color:#8A4E77;">
+                <span style="background-color:#46283c; color:#8A4E77;">
                   <a href="#shop/womens/clothing/dresses">
                     <span class="category-name">Dresses</span>
                   </a>
                 </span>
               </li>
-            <li class="category">
+            <li class="category nav_tops">
               <ul class="child-categories">
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/tops/shirts">
                       <span class="category-name">Shirts</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/tops/sweaters">
                       <span class="category-name">Sweaters</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/tops/sweatshirts">
                       <span class="category-name">Sweatshirts</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/tops/t-shirts">
                       <span class="category-name">T-Shirts</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/tops/blazers">
                       <span class="category-name">Blazers</span>
                     </a>
@@ -569,45 +391,45 @@
                 </a>
               </span>
             </li>
-            <li class="category">
+            <li class="category nav_bottoms">
               <ul class="child-categories">
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/bottoms/jeans">
                       <span class="category-name">Jeans</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/bottoms/pants">
                       <span class="category-name">Pants</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/bottoms/shorts">
                       <span class="category-name">Shorts</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/bottoms/rompers">
                       <span class="category-name">Rompers</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/bottoms/skirts">
                       <span class="category-name">Skirts</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/bottoms/swim">
                       <span class="category-name">Swim</span>
                     </a>
@@ -620,45 +442,45 @@
                 </a>
               </span>
             </li>
-            <li class="category">
-              <span style="color:#8A4E77;">
+            <li class="category nav_outerwear">
+              <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/clothing/outerwear">
                   <span class="category-name">Outerwear</span>
                 </a>
               </span>
             </li>
-            <li class="category">
+            <li class="category nav_underwear">
               <ul class="child-categories">
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/underwear/bras-undies">
                       <span class="category-name">Bras &amp; Undies</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/underwear/slips">
                       <span class="category-name">Slips</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/underwear/bodysuits">
                       <span class="category-name">Bodysuits</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/underwear/tights">
                       <span class="category-name">Tights</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/clothing/underwear/socks">
                       <span class="category-name">Socks</span>
                     </a>
@@ -678,38 +500,38 @@
             </a>
           </span>
         </li>
-        <li class="category">
+        <li class="category nav_shoes">
           <ul class="child-categories">
             <li class="category">
-              <span style="color:#8A4E77;">
+                <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/shoes/sandals">
                   <span class="category-name">Sandals</span>
                 </a>
               </span>
             </li>
             <li class="category">
-              <span style="color:#8A4E77;">
+                <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/shoes/heels">
                   <span class="category-name">Heels</span>
                 </a>
               </span>
             </li>
             <li class="category">
-              <span style="color:#8A4E77;">
+                <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/shoes/flats">
                   <span class="category-name">Flats</span>
                 </a>
               </span>
             </li>
             <li class="category">
-              <span style="color:#8A4E77;">
+                <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/shoes/boots">
                   <span class="category-name">Boots</span>
                 </a>
               </span>
             </li>
             <li class="category">
-              <span style="color:#8A4E77;">
+                <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/shoes/sneakers">
                   <span class="category-name">Sneakers</span>
                 </a>
@@ -722,47 +544,47 @@
             </a>
           </span>
         </li>
-        <li class="category">
+        <li class="category nav_accessories">
           <ul class="child-categories">
-            <li class="category">
+            <li class="category nav_bags">
               <ul class="child-categories">
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/accessories/bags/purses">
                       <span class="category-name">Purses</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/accessories/bags/wallets">
                       <span class="category-name">Wallets</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/accessories/bags/clutches">
                       <span class="category-name">Clutches</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/accessories/bags/totes">
                       <span class="category-name">Totes</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/accessories/bags/backpacks">
                       <span class="category-name">Backpacks</span>
                     </a>
                   </span>
                 </li>
                 <li class="category">
-                  <span style="color:#8A4E77;">
+                  <span style="background-color:#46283c; color:#8A4E77;">
                     <a href="#shop/womens/accessories/bags/luggage">
                       <span class="category-name">Luggage</span>
                     </a>
@@ -776,49 +598,49 @@
               </span>
             </li>
             <li class="category">
-              <span style="color:#8A4E77;">
+              <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/accessories/watches">
                   <span class="category-name">Watches</span>
                 </a>
               </span>
             </li>
             <li class="category">
-              <span style="color:#8A4E77;">
+              <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/accessories/belts">
                   <span class="category-name">Belts</span>
                 </a>
               </span>
             </li>
             <li class="category">
-              <span style="color:#8A4E77;">
+              <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/accessories/jewelry">
                   <span class="category-name">Jewelry</span>
                 </a>
               </span>
             </li>
             <li class="category">
-              <span style="color:#8A4E77;">
+              <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/accessories/hair">
                   <span class="category-name">Hair</span>
                 </a>
               </span>
             </li>
             <li class="category">
-              <span style="color:#8A4E77;">
+              <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/accessories/hats">
                   <span class="category-name">Hats</span>
                 </a>
               </span>
             </li>
             <li class="category">
-              <span style="color:#8A4E77;">
+              <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/accessories/scarves">
                   <span class="category-name">Scarves</span>
                 </a>
               </span>
             </li>
             <li class="category">
-              <span style="color:#8A4E77;">
+              <span style="background-color:#46283c; color:#8A4E77;">
                 <a href="#shop/womens/accessories/glasses">
                   <span class="category-name">Glasses</span>
                 </a>
@@ -1227,17 +1049,6 @@
   <main role="main" id="main">
     <div id="content-pane">No content loaded</div>
   </main>
-
-<!--
-   <ul id="menu">
-      <li><a href="#products/1462817">products/1462817 - Cricket Lamp</a></li>
-      <li><a href="#products/1175310">products/1175310 - Mid Century Danish Lamp</a></li>
-      <li><a href="#products/2174901">products/2174901 - Mid Century Op Art Vase - Wunsiedel, Bavaria 70s</a></li>
-  </ul>
- -->
-
-
-  <!-- Application source. -->
 
   <!--(if target dummy)><!-->
 <!--
