@@ -117,11 +117,6 @@ body {
 #primary-navigation {
   position: absolute;
   top: 0;
-  /* Cute background, only shown on hover or select. */
-/*
-  background: url(../images/roeder-flowers.png) 0 0 no-repeat;
-  background-size: 98.8% 20px;
-*/
 }
 
 .product-view #primary-navigation {
@@ -146,15 +141,6 @@ body {
 .child-categories li:last-child {
   border-right: 0;
 }
-/*
-.child-categories li a:before {
-  height: 67px;
-  width: 1px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-*/
 .child-categories li a {
   width: 100%;
   height: 100%;
@@ -182,7 +168,6 @@ body {
 	top: 100%;
 	left: 0;
 }
-
 
 .child-categories {
 	position: relative;
@@ -215,6 +200,14 @@ body {
     margin-top: 100px;
   }
 
+/*3 Deep*/
+  .nav_home.nav_decor #content-pane,
+  .nav_home.nav_kitchen #content-pane,
+
+  .nav_tech.nav_audio #content-pane,
+  .nav_tech.nav_cameras #content-pane,
+  .nav_tech.nav_accessories #content-pane,
+
   .nav_mens.nav_clothing.nav_bottoms #content-pane,
   .nav_mens.nav_clothing.nav_tops #content-pane,
   .nav_mens.nav_clothing #content-pane,
@@ -226,6 +219,8 @@ body {
   .nav_womens.nav_accessories #content-pane {
     margin-top: 150px;
   }
+
+/*4 Deep*/
   .nav_mens.nav_clothing.nav_bottoms #content-pane,
   .nav_mens.nav_clothing.nav_tops #content-pane,
   .nav_mens.nav_clothing.nav_outerwear #content-pane,
@@ -246,7 +241,6 @@ body {
   opacity: 0;
   pointer-events: none;
 }
-
 
 /*Begin unnecessarily complicated selector stack*/
   .nav_mens .nav_mens > ul,
@@ -309,6 +303,32 @@ body {
   opacity: 1;
   }
 
+  .nav_tech.nav_audio .nav_tech .nav_audio > ul,
+  .nav_tech.nav_cameras .nav_tech .nav_cameras  > ul,
+  .nav_tech.nav_accessories .nav_tech .nav_accessories > ul {
+    display: table;
+    position: absolute;
+    pointer-events: auto !important;
+    z-index: 3;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    opacity: 1;
+  }
+  .nav_home.nav_decor .nav_home .nav_decor > ul, 
+  .nav_home.nav_furniture .nav_home .nav_furniture > ul,
+  .nav_home.nav_bath .nav_home .nav_bath > ul, 
+  .nav_home.nav_bedding .nav_home .nav_bedding > ul,
+  .nav_home.nav_kitchen .nav_home .nav_kitchen > ul {
+    display: table;
+    position: absolute;
+    pointer-events: auto !important;
+    z-index: 3;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    opacity: 1;
+  }
 
   .nav_womens.nav_clothing.nav_tops .nav_womens .nav_clothing .nav_tops > ul + span a,
   .nav_womens.nav_clothing.nav_bottoms .nav_womens .nav_clothing .nav_bottoms  > ul + span a,
@@ -329,6 +349,50 @@ body {
     background: rgba(255,255,255,0);
     color: #fefefe !important;
   }
+
+  .nav_tech.nav_audio .nav_tech .nav_audio > ul + span a,
+  .nav_tech.nav_cameras .nav_tech .nav_cameras  > ul + span a,
+  .nav_tech.nav_accessories .nav_tech .nav_accessories > ul + span a {
+    background: rgba(255,255,255,0);
+    color: #fefefe !important;
+  }
+
+  .nav_home.nav_decor .nav_home .nav_decor > ul + span a,
+  .nav_home.nav_furniture .nav_home .nav_furniture > span a,
+  .nav_home.nav_bath .nav_home .nav_bath > span a,
+  .nav_home.nav_bedding .nav_home .nav_bedding > span a,
+  .nav_home.nav_kitchen .nav_home .nav_kitchen > ul + span a {
+    background: rgba(255,255,255,0);
+    color: #fefefe !important;    
+  }
+
+  .nav_art.nav_supplies .nav_art .nav_supplies > span a,
+  .nav_art.nav_collage .nav_art .nav_collage > span a,
+  .nav_art.nav_photography .nav_art .nav_photography > span a,
+  .nav_art.nav_3d .nav_art .nav_3d > span a,
+  .nav_art.nav_posters .nav_art .nav_posters > span a {
+    background: rgba(255,255,255,0);
+    color: #fefefe !important;    
+  }
+
+/*Cul-de-sac categories*/
+
+  .nav_media.nav_books-music .nav_media .nav_books-music > span a,
+  .nav_media.nav_movies .nav_media .nav_movies > span a,
+
+
+  .nav_other.nav_booze .nav_other .nav_booze > span a,
+  .nav_other.nav_cycling .nav_other .nav_cycling > span a,
+  .nav_other.nav_toys .nav_other .nav_toys > span a,
+  .nav_other.nav_games .nav_other .nav_games > span a,
+  .nav_other.nav_antiques .nav_other .nav_antiques > span a,
+  .nav_other.nav_pets .nav_other .nav_pets > span a,
+  .nav_other.nav_tools .nav_other .nav_tools > span a,
+  .nav_other.nav_camping .nav_other .nav_camping > span a {
+    background: rgba(255,255,255,0);
+    color: #fefefe !important;    
+  }
+
 
 /*Main application*/
 .application-name {
