@@ -111,7 +111,7 @@ input, select {
 
 /*Navigation styles*/
 body {
-	background: url(../images/purty_wood.png);
+	background: url(/app/images/purty_wood.png);
 }
 
 #primary-navigation {
@@ -125,42 +125,44 @@ body {
 .category {
   font-size: 36px;
   line-height: 1.16;
+	& > ul { 
+	  pointer-events: none;
+	  position: absolute; 
+	  top: -100%;
+	  opacity: 0;
+	  z-index: 1;
+	}
+	a { color: inherit; }
 }
+
 .child-categories {
-  display: table;
-  width: 100%;
-  min-width: 450px;
-  box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
+	display: table;
+	position: relative;
+	width: 100%;
+	min-width: 450px;
+	box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
+	li {
+		display: table-cell;
+		min-height: 150px;
+		min-width: 70px;
+		text-align: center;
+		&:last-child {
+		  border-right: 0;
+		}
+	  	a {
+			width: 100%;
+			height: 100%;
+			display: inline-block;
+			text-decoration: none;
+			white-space: nowrap;
+			background: rgba(0,0,0,1);
+			&:hover {
+			  background: rgba(255,255,255,0.0);
+			  color: #fefefe !important;
+			}
+	  	}
+	}
 }
-.child-categories li {
-  display: table-cell;
-  min-height: 150px;
-  min-width: 70px;
-  text-align: center;
-}
-.child-categories li:last-child {
-  border-right: 0;
-}
-.child-categories li a {
-  width: 100%;
-  height: 100%;
-  display: inline-block;
-  text-decoration: none;
-	white-space: nowrap;
-  background: rgba(0,0,0,1);
-}
-.child-categories li a:hover {
-  background: rgba(255,255,255,0.0);
-  color: #fefefe !important;
-}
-.category > ul { 
-  pointer-events: none;
-  position: absolute; 
-  top: -100%;
-  opacity: 0;
-  z-index: 1;
-}
-.category a { color: inherit; }
 
 .active_ > ul {
 	display: table;
@@ -169,56 +171,84 @@ body {
 	left: 0;
 }
 
-.child-categories {
-	position: relative;
-}
-
 .category-name {
 	position: relative;
 	z-index: 1;
 	font-family: Helvetica;
 	pointer-events: none;
-  margin-left: -11px;
+	margin-left: -11px;
+	& + span {
+		width: 100%;
+		height: 100%;
+		display: block;
+		z-index: 0;
+		position: absolute;
+		top: 0;
+	}
 }
 
-.category-name + span {
-  width: 100%;
-	height: 100%;
-	display: block;
-	z-index: 0;
-  position: absolute;
-  top: 0;
-}
+$primary-nav-list: mens womens tech media home art other;
+@mixin primary-nav {
+  	$mens-nav-list: clothing shoes accessories;
+  		$mens-clothing-nav-list: tops bottoms outerwear suits;
+  			$mens-clothing-tops-nav-list: shirts sweaters sweatshirts t-shirts;
+  			$mens-clothing-bottoms-nav-list: jeans pants shorts socks underwear swim;
+  		$mens-shoes-nav-list: casual sneakers dress boots sandals;
+  		$mens-accessories-nav-list: bags watches wallets belts ties hats glasses;
+  	$womens-nav-list: clothing shoes accessories beauty;
+  		$womens-clothing-nav-list: dresses tops bottoms outerwear underwear;
+  			$womens-clothing-tops-nav-list: shirts sweaters sweatshirts t-shirts blazers;
+  			$womens-clothing-bottoms-nav-list: jeans pants shorts rompers skirts swim;
+		$womens-shoes-nav-list: sandals heels flats boots sneakers;
+		$womens-accessories-nav-list: bags watches belts jewelery hair hats scarves glasses;
+	$tech-nav-list: audio cameras accessories;
+		$tech-audio-nav-list: turntables headphones speakers instruments;
+		$tech-cameras-nav-list: digital analog accessories;
+		$tech-other-nav-list: laptop phone other;
+	$media-nav-list: books-music movies;
+	$home-nav-list: kitchen bedding bath furniture decor;
+		$home-kitchen-nav-list: cookware coffee-tea storage cutlery utensils appliances accessories;
+		$home-decor-nav-list: rugs lighting accessories pillows clocks;
+	$art-nav-list: 3d posters photography collage supplies;
+	$other-nav-list: booze cycling toys games antiques pets camping tools;
 
-  .nav_mens #content-pane,
-  .nav_womens #content-pane,
-  .nav_tech #content-pane,
-  .nav_media #content-pane,
-  .nav_home #content-pane,
-  .nav_art #content-pane,
-  .nav_other #content-pane {
-    margin-top: 100px;
-  }
+  @each $option in $primary-nav-list {
+	    .nav_#{$option} #content-pane {
+	      margin-top: 100px;  
+	    }
+	}
+
+  @each $option in $mens-nav-list {
+	    .nav_mens.nav_#{$option} #content-pane {
+	      margin-top: 150px;  
+	    }
+	}
+
+  @each $option in $womens-nav-list {
+	    .nav_womens.nav_#{$option} #content-pane {
+	      margin-top: 150px;  
+	    }
+	}
+
+  @each $option in $mens-clothing-nav-list {
+	    .nav_mens.nav_clothing.nav_#{$option} #content-pane {
+	      margin-top: 150px;  
+	    }
+	}
+
+  @each $option in $tech-nav-list {
+	    .nav_tech.nav_#{$option} #content-pane {
+	      margin-top: 150px;  
+	    }
+	}
+
+}
+@include primary-nav;
+
 
 /*3 Deep*/
   .nav_home.nav_decor #content-pane,
-  .nav_home.nav_kitchen #content-pane,
-
-  .nav_tech.nav_audio #content-pane,
-  .nav_tech.nav_cameras #content-pane,
-  .nav_tech.nav_accessories #content-pane,
-
-  .nav_mens.nav_clothing.nav_suits #content-pane,
-  .nav_mens.nav_clothing.nav_outerwear #content-pane,
-  .nav_mens.nav_clothing.nav_bottoms #content-pane,
-  .nav_mens.nav_clothing.nav_tops #content-pane,
-  .nav_mens.nav_clothing #content-pane,
-  .nav_mens.nav_shoes #content-pane,
-  .nav_mens.nav_accessories #content-pane,
-  
-  .nav_womens.nav_clothing #content-pane,
-  .nav_womens.nav_shoes #content-pane,
-  .nav_womens.nav_accessories #content-pane {
+  .nav_home.nav_kitchen #content-pane {
     margin-top: 150px;
   }
 
@@ -243,49 +273,33 @@ body {
 }
 
 /*Begin unnecessarily complicated selector stack*/
-  .nav_mens .nav_mens > ul,
-  .nav_womens .nav_womens > ul,
-  .nav_tech .nav_tech > ul,
-  .nav_media .nav_media > ul,
-  .nav_home .nav_home > ul,
-  .nav_art .nav_art > ul,
-  .nav_other .nav_other > ul {
-  display: table;
-  position: absolute;
-  pointer-events: auto;
-  z-index: 3;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  opacity: 1;
-  }
+@mixin span-backer {
 
-  .nav_mens .nav_mens > ul + span a,
-  .nav_womens .nav_womens > ul + span > a,
-  .nav_tech .nav_tech > ul + span > a,
-  .nav_media .nav_media > ul + span > a,
-  .nav_home .nav_home > ul + span > a,
-  .nav_art .nav_art > ul + span > a,
-  .nav_other .nav_other > ul + span > a {
-    background: rgba(255,255,255,0);
-    color: #fefefe !important;
-  }
+  @each $option in $primary-nav-list {
+	    .nav_#{$option} .nav_#{$option} > ul + span a {
+		    background: rgba(255,255,255,0);
+		    color: #fefefe !important;
+	    }
+	    .nav_#{$option} .nav_#{$option} > ul {
+			display: table;
+			position: absolute;
+			pointer-events: auto !important;
+			z-index: 3;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			opacity: 1;
+		}
+	}	
+}
+@include span-backer;
 
   .nav_mens.nav_clothing.nav_tops .nav_mens .nav_clothing .nav_tops > ul,
   .nav_mens.nav_clothing.nav_bottoms .nav_mens .nav_clothing .nav_bottoms > ul,
   .nav_mens.nav_clothing.nav_tops .nav_mens .nav_clothing .nav_tops > ul,
   .nav_mens.nav_clothing .nav_mens .nav_clothing > ul,
   .nav_mens.nav_shoes .nav_mens .nav_shoes > ul,
-  .nav_mens.nav_accessories .nav_mens .nav_accessories > ul {
-  display: table;
-  position: absolute;
-  pointer-events: auto !important;
-  z-index: 3;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  opacity: 1;
-  }
+  .nav_mens.nav_accessories .nav_mens .nav_accessories > ul,
 
   .nav_womens.nav_clothing.nav_tops .nav_womens .nav_clothing .nav_tops > ul,
   .nav_womens.nav_clothing.nav_bottoms .nav_womens .nav_clothing .nav_bottoms > ul,
@@ -335,36 +349,24 @@ body {
   .nav_womens.nav_clothing.nav_tops .nav_womens .nav_clothing .nav_tops > ul + span a,
   .nav_womens.nav_clothing .nav_womens .nav_clothing > ul + span a,
   .nav_womens.nav_shoes .nav_womens .nav_shoes > ul + span a,
-  .nav_womens.nav_accessories .nav_womens .nav_accessories > ul + span a {
-    background: rgba(255,255,255,0);
-    color: #fefefe !important;
-  }
+  .nav_womens.nav_accessories .nav_womens .nav_accessories > ul + span a,
 
   .nav_mens.nav_clothing.nav_tops .nav_mens .nav_clothing .nav_tops > ul + span a,
   .nav_mens.nav_clothing.nav_bottoms .nav_mens .nav_clothing .nav_bottoms  > ul + span a,
   .nav_mens.nav_clothing.nav_tops .nav_mens .nav_clothing .nav_tops > ul + span a,
   .nav_mens.nav_clothing .nav_mens .nav_clothing > ul + span a,
   .nav_mens.nav_shoes .nav_mens .nav_shoes > ul + span a,
-  .nav_mens.nav_accessories .nav_mens .nav_accessories > ul + span a {
-    background: rgba(255,255,255,0);
-    color: #fefefe !important;
-  }
+  .nav_mens.nav_accessories .nav_mens .nav_accessories > ul + span a,
 
   .nav_tech.nav_audio .nav_tech .nav_audio > ul + span a,
   .nav_tech.nav_cameras .nav_tech .nav_cameras  > ul + span a,
-  .nav_tech.nav_accessories .nav_tech .nav_accessories > ul + span a {
-    background: rgba(255,255,255,0);
-    color: #fefefe !important;
-  }
+  .nav_tech.nav_accessories .nav_tech .nav_accessories > ul + span a,
 
   .nav_home.nav_decor .nav_home .nav_decor > ul + span a,
   .nav_home.nav_furniture .nav_home .nav_furniture > span a,
   .nav_home.nav_bath .nav_home .nav_bath > span a,
   .nav_home.nav_bedding .nav_home .nav_bedding > span a,
-  .nav_home.nav_kitchen .nav_home .nav_kitchen > ul + span a {
-    background: rgba(255,255,255,0);
-    color: #fefefe !important;    
-  }
+  .nav_home.nav_kitchen .nav_home .nav_kitchen > ul + span a,
 
   .nav_art.nav_supplies .nav_art .nav_supplies > span a,
   .nav_art.nav_collage .nav_art .nav_collage > span a,
@@ -379,7 +381,6 @@ body {
 
   .nav_media.nav_books-music .nav_media .nav_books-music > span a,
   .nav_media.nav_movies .nav_media .nav_movies > span a,
-
 
   .nav_other.nav_booze .nav_other .nav_booze > span a,
   .nav_other.nav_cycling .nav_other .nav_cycling > span a,
@@ -410,103 +411,104 @@ body {
   min-width: 200px;
   padding: 20px 15px;
   background-color: rgba(224,224,224,1);
-}
-.total-products strong {
-  font-size: 3em;
+	strong {
+		font-size: 3em;
+	}
 }
 .category-nav {
 list-style: none;
 display: table;
 width: 100%;
 margin-top: -80px;
+	li { 
+		display: table-cell;
+		min-width: 80px;
+		&:last-child { 
+			border-right: 0; 
+		}
+		a {
+			display: block;
+			width: 100%;
+			text-decoration: none;
+			font-size: 26px;
+			&:after {
+				content: "";
+				width: 0; 
+				height: 0; 
+				border-top: 28px solid transparent;
+				border-bottom: 28px solid transparent;
+				border-left: 28px solid white;
+				position: absolute;
+				right: 0;
+				top: 0;
+				z-index: 9;
+				pointer-events: none;
+			}
+			&:before {
+				content: "";
+				width: 0; 
+				height: 0; 
+				border-top: 28px solid transparent;
+				border-bottom: 28px solid transparent;
+				border-left: 28px solid black;
+				position: absolute;
+				right: -28px;
+				top: 0;
+				z-index: 10;
+				pointer-events: none;
+			}
+		}
+	}
 }
-.category-nav li { 
-  display: table-cell;
-  min-width: 80px;
-}
-.category-nav li:last-child { 
-  border-right: 0; 
-}
-.category-nav li a {
-  display: block;
-  width: 100%;
-  text-decoration: none;
-  font-size: 26px;
-}
-.category-nav li a:after {
-  content: "";
-  width: 0; 
-  height: 0; 
-  border-top: 28px solid transparent;
-  border-bottom: 28px solid transparent;
-  border-left: 28px solid white;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 9;
-  pointer-events: none;
-}
-.category-nav li a:before {
-  content: "";
-  width: 0; 
-  height: 0; 
-  border-top: 28px solid transparent;
-  border-bottom: 28px solid transparent;
-  border-left: 28px solid black;
-  position: absolute;
-  right: -28px;
-  top: 0;
-  z-index: 10;
-  pointer-events: none;
-}
+
 .category-list {
-  width: 100%;
-  list-style: none;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden;
-  text-align: center;
-/*  white-space: nowrap;
-*/
-}
-.category-list li {
-  display: inline-block;
-  margin: 0 0 15px !important;
-  padding: 0 !important;
-  height: 100%;
-  width: 90%;
-  overflow: hidden;
-  position: relative;
+	width: 100%;
+	list-style: none;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden;
+	text-align: center;
+	li {
+		display: inline-block;
+		margin: 0 0 15px !important;
+		padding: 0 !important;
+		height: 100%;
+		width: 90%;
+		overflow: hidden;
+		position: relative;
+		a {
+			position: relative;
+		}
+		img {
+			max-width: 100%;
+			overflow: auto;
+		}
+	}
+	.page-title {
+		position: absolute;
+		bottom: 4px;
+		left: 0;
+		z-index: 10;
+		font-size: 16px;
+		color: #000;
+		line-height: 1.2;
+		text-align: left;
+		display: block;
+		padding: 10px;
+		background-color: rgba(224,224,224,0.6);
+	}
 }
 #content-pane {
   margin-top: 80px;
   text-align: center;
 }
-.category-list li a {
-  position: relative;
-}
-.category-list li img {
-  max-width: 100%;
-  overflow: auto;
-}
-.category-list .page-title {
-  position: absolute;
-  bottom: 4px;
-  left: 0;
-  z-index: 10;
-  font-size: 16px;
-  color: #000;
-  line-height: 1.2;
-  text-align: left;
-  display: block;
-  padding: 10px;
-  background-color: rgba(224,224,224,0.6);
-}
-/*Avatar and users*/
+
+//Avatar and users
 .user-avatar {
   position: absolute !important;
   color: inherit;
   text-decoration: none;
+  margin-left: 5px;
 }
 .user-name {
   font-weight: bold;
@@ -515,13 +517,13 @@ margin-top: -80px;
   position: absolute;
   margin-left: 5px;
   white-space: nowrap;
-}
-.user-avatar img {
-  width: 50px;
- -moz-border-radius:52px;
- -webkit-border-radius:52px;
- border-radius:52px;
- margin-left: 5px;
+	img {
+		width: 50px;
+		-moz-border-radius:52px;
+		-webkit-border-radius:52px;
+		border-radius:52px;
+		margin-left: 5px;
+	}
 }
 
 /*Product details*/
@@ -529,18 +531,19 @@ margin-top: -80px;
   padding-top: 20px;
   position: relative;
   display: inline-block;
+	h2 {
+		font-size: 24px;
+		width: 100%;
+		margin: 10px auto 10px;
+		position: absolute;
+	}
+	a {
+		display: inline-block;
+		text-decoration: none;
+		color: black;
+	}
 }
-.product-details h2 {
-  font-size: 24px;
-  width: 100%;
-  margin: 10px auto 10px;
-  position: absolute;
-}
-.product-details a {
-  display: inline-block;
-  text-decoration: none;
-  color: black;
-}
+
 .product-details-content {
   position: absolute;
   top: 20px;
@@ -549,13 +552,13 @@ margin-top: -80px;
   padding-top: 52px;
   padding-left: 60px;
   text-align: left;
-}
-.product-details-content span {
-  white-space: nowrap;
-}
-.product-details-content .user-avatar {
-  left: 0;
-  top: 0;
+	span {
+		white-space: nowrap;
+	}
+	.user-avatar {
+		left: 0;
+		top: 0;
+	}
 }
 
 /*Category navigation*/
@@ -590,7 +593,7 @@ margin-top: -80px;
   content: "";
   width: 100%;
   height: 67px;
-  background: url('../images/white-padded.png') -11px 10px repeat-x;
+  background: url('/app/images/white-padded.png') -11px 10px repeat-x;
   position: absolute;
   top: -11px;
   left: -11px;

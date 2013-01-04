@@ -70,9 +70,9 @@
                   url:pageUrl,
                   dataType:'jsonp',
                   success:function (data) {
-                    console.log('productAction');
+                    // console.log('productAction');
                       //Once we receive the data, set it to the content pane.
-                      console.log(data);
+                      // console.log(data);
                       // console.log(data.response.product.page_title);
                       // $('#content-pane').text(data);
                       // Doin' it wrong.  Need to make a model to contain Product, then a collection.
@@ -86,14 +86,6 @@
                         user: data.response.product.user,
                         store: data.response.product.store
                       };
-                      // Keeping track of these in the console, for peeling.
-                      console.log(product.page_title);
-
-                      console.log(product.page_categories.forEach(
-                        function (el, i) { 
-                          console.log (el.name) 
-                        })
-                      );
 
                       // Empty out category list.
                       var product_category_list = '';
@@ -143,7 +135,6 @@
                       //Once we receive the data, set it to the content pane.
                       console.log(data);
                       // console.log(data.response.product.page_title);
-                      // $('#content-pane').text(data);
                       // Doin' it wrong.  Need to make a model to contain Product, then a collection.
                       $('body').addClass(categoryList);
                       var category = { 
