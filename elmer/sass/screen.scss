@@ -206,6 +206,9 @@ $primary-nav-list: mens womens tech media home art other;
   			$mens-clothing-bottoms-nav-list: jeans pants shorts socks underwear swim;
   		$mens-shoes-nav-list: casual sneakers dress boots sandals;
   		$mens-accessories-nav-list: bags watches wallets belts ties hats glasses;
+        $mens-accessories-bags-nav-list: backpacks messenger luggage;
+        $mens-accessories-watches-nav-list: casual formal;
+        $mens-accessories-hats-nav-list: caps classic beanies;
   	$womens-nav-list: clothing shoes accessories beauty;
   		$womens-clothing-nav-list: dresses tops bottoms outerwear underwear;
   			$womens-clothing-tops-nav-list: shirts sweaters sweatshirts t-shirts blazers;
@@ -263,6 +266,88 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_mens_shoes_#{$option} .nav_mens > ul,
       .nav_mens_shoes_#{$option} .nav_mens .nav_shoes > ul,
       .nav_mens_shoes_#{$option} .nav_mens .nav_shoes .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+  // Mens Accessories
+  @each $option in $mens-accessories-nav-list {
+      .nav_mens_accessories_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_mens_accessories_#{$option} .nav_mens > span a,
+      .nav_mens_accessories_#{$option} .nav_mens .nav_accessories > span a,
+      .nav_mens_accessories_#{$option} .nav_mens .nav_accessories .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_mens_accessories_#{$option} .nav_mens > ul,
+      .nav_mens_accessories_#{$option} .nav_mens .nav_accessories > ul,
+      .nav_mens_accessories_#{$option} .nav_mens .nav_accessories .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+// Mens Accessories Bags
+  @each $option in $mens-accessories-bags-nav-list {
+      .nav_mens_accessories_bags_#{$option} #content-pane {
+        margin-top: 200px;  
+      }
+      // Second tier
+      .nav_mens_accessories_bags_#{$option} .nav_mens > span a,
+      .nav_mens_accessories_bags_#{$option} .nav_mens .nav_accessories > span a,
+      .nav_mens_accessories_bags_#{$option} .nav_mens .nav_accessories .nav_bags > span a,
+      .nav_mens_accessories_bags_#{$option} .nav_mens .nav_accessories .nav_bags .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_mens_accessories_bags_#{$option} .nav_mens > ul,
+      .nav_mens_accessories_bags_#{$option} .nav_mens .nav_accessories > ul,
+      .nav_mens_accessories_bags_#{$option} .nav_mens .nav_accessories .nav_bags > ul,
+      .nav_mens_accessories_bags_#{$option} .nav_mens .nav_accessories .nav_bags .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+// Mens Accessories Watches
+  @each $option in $mens-accessories-watches-nav-list {
+      .nav_mens_accessories_watches_#{$option} #content-pane {
+        margin-top: 200px;  
+      }
+      // Second tier
+      .nav_mens_accessories_watches_#{$option} .nav_mens > span a,
+      .nav_mens_accessories_watches_#{$option} .nav_mens .nav_accessories > span a,
+      .nav_mens_accessories_watches_#{$option} .nav_mens .nav_accessories .nav_watches > span a,
+      .nav_mens_accessories_watches_#{$option} .nav_mens .nav_accessories .nav_watches .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_mens_accessories_watches_#{$option} .nav_mens > ul,
+      .nav_mens_accessories_watches_#{$option} .nav_mens .nav_accessories > ul,
+      .nav_mens_accessories_watches_#{$option} .nav_mens .nav_accessories .nav_watches > ul,
+      .nav_mens_accessories_watches_#{$option} .nav_mens .nav_accessories .nav_watches .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+// Mens Accessories Hats
+  @each $option in $mens-accessories-hats-nav-list {
+      .nav_mens_accessories_hats_#{$option} #content-pane {
+        margin-top: 200px;  
+      }
+      // Second tier
+      .nav_mens_accessories_hats_#{$option} .nav_mens > span a,
+      .nav_mens_accessories_hats_#{$option} .nav_mens .nav_accessories > span a,
+      .nav_mens_accessories_hats_#{$option} .nav_mens .nav_accessories .nav_hats > span a,
+      .nav_mens_accessories_hats_#{$option} .nav_mens .nav_accessories .nav_hats .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_mens_accessories_hats_#{$option} .nav_mens > ul,
+      .nav_mens_accessories_hats_#{$option} .nav_mens .nav_accessories > ul,
+      .nav_mens_accessories_hats_#{$option} .nav_mens .nav_accessories .nav_hats > ul,
+      .nav_mens_accessories_hats_#{$option} .nav_mens .nav_accessories .nav_hats .nav_#{$option} > ul {
         @include selected-ul;
     }
   }
@@ -338,6 +423,9 @@ $primary-nav-list: mens womens tech media home art other;
     }
   }
 
+  .nav_mens_accessories_hats #content-pane,
+  .nav_mens_accessories_bags #content-pane,
+  .nav_mens_accessories_watches #content-pane,
   .nav_mens_clothing_bottoms #content-pane,
   .nav_mens_clothing_tops #content-pane
    {
