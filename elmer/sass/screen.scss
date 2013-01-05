@@ -215,7 +215,8 @@ $primary-nav-list: mens womens tech media home art other;
         $womens-clothing-bottoms-nav-list: jeans pants shorts rompers skirts swim;
         $womens-clothing-underwear-nav-list: bras-undies slips bodysuits tights socks;
 		$womens-shoes-nav-list: sandals heels flats boots sneakers;
-		$womens-accessories-nav-list: bags watches belts jewelery hair hats scarves glasses;
+		$womens-accessories-nav-list: bags watches belts jewelry hair hats scarves glasses;
+      $womens-accessories-bags-nav-list: purses wallets clutches totes backpacks luggage;
 	$tech-nav-list: audio cameras accessories;
 		$tech-audio-nav-list: turntables headphones speakers instruments;
 		$tech-cameras-nav-list: digital analog accessories;
@@ -453,6 +454,47 @@ $primary-nav-list: mens womens tech media home art other;
     }
   }
 
+// Womens Accessories
+  @each $option in $womens-accessories-nav-list {
+      .nav_womens_accessories_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_womens_accessories_#{$option} .nav_womens > span a,
+      .nav_womens_accessories_#{$option} .nav_womens .nav_accessories > span a,
+      .nav_womens_accessories_#{$option} .nav_womens .nav_accessories .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_womens_accessories_#{$option} .nav_womens > ul,
+      .nav_womens_accessories_#{$option} .nav_womens .nav_accessories > ul,
+      .nav_womens_accessories_#{$option} .nav_womens .nav_accessories .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+
+// Womens Accessories Bags
+  @each $option in $womens-accessories-bags-nav-list {
+      .nav_womens_accessories_bags_#{$option} #content-pane {
+        margin-top: 200px;  
+      }
+      // Second tier
+      .nav_womens_accessories_bags_#{$option} .nav_womens > span a,
+      .nav_womens_accessories_bags_#{$option} .nav_womens .nav_accessories > span a,
+      .nav_womens_accessories_bags_#{$option} .nav_womens .nav_accessories .nav_bags > span a,
+      .nav_womens_accessories_bags_#{$option} .nav_womens .nav_accessories .nav_bags .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_womens_accessories_bags_#{$option} .nav_womens > ul,
+      .nav_womens_accessories_bags_#{$option} .nav_womens .nav_accessories > ul,
+      .nav_womens_accessories_bags_#{$option} .nav_womens .nav_accessories .nav_bags > ul,
+      .nav_womens_accessories_bags_#{$option} .nav_womens .nav_accessories .nav_bags .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
   // Womens Shoes
   @each $option in $womens-shoes-nav-list {
       .nav_womens_shoes_#{$option} #content-pane {
@@ -575,6 +617,10 @@ $primary-nav-list: mens womens tech media home art other;
     .nav_womens_clothing_underwear_#{$option} #content-pane {
       margin-top: 200px;  
     }
+  }
+
+  .nav_womens_beauty #content-pane {
+    margin-top: 100px;
   }
 
   .nav_womens_clothing_underwear #content-pane,
