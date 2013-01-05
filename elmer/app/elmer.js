@@ -47,8 +47,8 @@
             //Category list seems to not work when navigating to a new page.
             var restfulPageUrl = this.restfulUrl + 'shop' + category + '.json';
             $('body').attr({class: ''});
-            categoryList = category.replace(/\//g,' nav_');
-            $('body').addClass(categoryList);
+            categoryList = category.replace(/\//g,'_');
+            $('body').addClass('nav' + categoryList);
             this.loadRestfulData(restfulPageUrl);
             console.log(restfulPageUrl);
             console.log(category);
@@ -93,6 +93,7 @@
                       function (el, i) {
                         // Mash, cut and strip my way to a url that matches something in my routes.
                         var product_category_url = el.url.replace("https://api.svpply.com/v1/", "#").replace(".json", "");
+                        console.log('categoryURL: ' + product_category_url);
                         var categorySingle = '<li><a href=' + product_category_url + '>' + el.name + '</a></li>';
                         product_category_list = product_category_list + categorySingle;
                       });
@@ -133,10 +134,10 @@
                   success:function (data) {
                     console.log('fullAction');
                       //Once we receive the data, set it to the content pane.
-                      console.log(data);
+                      // console.log(data);
                       // console.log(data.response.product.page_title);
                       // Doin' it wrong.  Need to make a model to contain Product, then a collection.
-                      $('body').addClass(categoryList);
+                      $('body').addClass('nav' + categoryList);
                       var category = { 
                         products: data.response.products,
                         total_products: data.response.total_products                              
@@ -154,7 +155,7 @@
                         '</span></a> </li>'].join('');
                         product_list = product_list + productSingle;
                       });
-                      console.log (product_list);
+                      // console.log (product_list);
                       $('#content-pane').html(
                         function() {
                         var productSingle = [

@@ -187,6 +187,17 @@ body {
 	}
 }
 
+@mixin selected-ul {
+      display: table;
+      position: absolute;
+      pointer-events: auto !important;
+      z-index: 3;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      opacity: 1;
+}
+
 $primary-nav-list: mens womens tech media home art other;
 @mixin primary-nav {
   	$mens-nav-list: clothing shoes accessories;
@@ -198,7 +209,8 @@ $primary-nav-list: mens womens tech media home art other;
   	$womens-nav-list: clothing shoes accessories beauty;
   		$womens-clothing-nav-list: dresses tops bottoms outerwear underwear;
   			$womens-clothing-tops-nav-list: shirts sweaters sweatshirts t-shirts blazers;
-  			$womens-clothing-bottoms-nav-list: jeans pants shorts rompers skirts swim;
+        $womens-clothing-bottoms-nav-list: jeans pants shorts rompers skirts swim;
+        $womens-clothing-underwear-nav-list: bras-undies slips bodysuits tights socks;
 		$womens-shoes-nav-list: sandals heels flats boots sneakers;
 		$womens-accessories-nav-list: bags watches belts jewelery hair hats scarves glasses;
 	$tech-nav-list: audio cameras accessories;
@@ -212,57 +224,475 @@ $primary-nav-list: mens womens tech media home art other;
 	$art-nav-list: 3d posters photography collage supplies;
 	$other-nav-list: booze cycling toys games antiques pets camping tools;
 
+
   @each $option in $primary-nav-list {
 	    .nav_#{$option} #content-pane {
 	      margin-top: 100px;  
 	    }
 	}
 
+// Mens
   @each $option in $mens-nav-list {
-	    .nav_mens.nav_#{$option} #content-pane {
-	      margin-top: 150px;  
-	    }
-	}
+      .nav_mens_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_mens_#{$option} .nav_mens > span a,
+      .nav_mens_#{$option} .nav_mens .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_mens_#{$option} .nav_mens > ul,
+      .nav_mens_#{$option} .nav_mens .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
 
-  @each $option in $womens-nav-list {
-	    .nav_womens.nav_#{$option} #content-pane {
-	      margin-top: 150px;  
-	    }
-	}
+  // Mens Shoes
+  @each $option in $mens-shoes-nav-list {
+      .nav_mens_shoes_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_mens_shoes_#{$option} .nav_mens > span a,
+      .nav_mens_shoes_#{$option} .nav_mens .nav_shoes > span a,
+      .nav_mens_shoes_#{$option} .nav_mens .nav_shoes .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_mens_shoes_#{$option} .nav_mens > ul,
+      .nav_mens_shoes_#{$option} .nav_mens .nav_shoes > ul,
+      .nav_mens_shoes_#{$option} .nav_mens .nav_shoes .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
 
+// Mens Clothing
   @each $option in $mens-clothing-nav-list {
-	    .nav_mens.nav_clothing.nav_#{$option} #content-pane {
+	    .nav_mens_clothing_#{$option} #content-pane {
 	      margin-top: 150px;  
 	    }
+      // Second tier
+      .nav_mens_clothing_#{$option} .nav_mens > span a,
+      .nav_mens_clothing_#{$option} .nav_mens .nav_clothing > span a,
+      .nav_mens_clothing_#{$option} .nav_mens .nav_clothing .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_mens_clothing_#{$option} .nav_mens > ul,
+      .nav_mens_clothing_#{$option} .nav_mens .nav_clothing > ul,
+      .nav_mens_clothing_#{$option} .nav_mens .nav_clothing .nav_#{$option} > ul {
+        @include selected-ul;
+    }
 	}
 
+// Mens Clothing Tops
+  @each $option in $mens-clothing-tops-nav-list {
+      .nav_mens_clothing_tops_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_mens_clothing_tops_#{$option} .nav_mens > span a,
+      .nav_mens_clothing_tops_#{$option} .nav_mens .nav_clothing > span a,
+      .nav_mens_clothing_tops_#{$option} .nav_mens .nav_clothing .nav_tops > span a,
+      .nav_mens_clothing_tops_#{$option} .nav_mens .nav_clothing .nav_tops .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_mens_clothing_tops_#{$option} .nav_mens > ul,
+      .nav_mens_clothing_tops_#{$option} .nav_mens .nav_clothing > ul,
+      .nav_mens_clothing_tops_#{$option} .nav_mens .nav_clothing .nav_tops > ul,
+      .nav_mens_clothing_tops_#{$option} .nav_mens .nav_clothing .nav_tops .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+//Mens Clothing Bottoms
+  @each $option in $mens-clothing-bottoms-nav-list {
+    .nav_mens_clothing_bottoms_#{$option} #content-pane {
+      margin-top: 200px;  
+    }
+
+    // Second tier
+    .nav_mens_clothing_bottoms_#{$option} .nav_mens > span a,
+    .nav_mens_clothing_bottoms_#{$option} .nav_mens .nav_clothing > span a,
+    .nav_mens_clothing_bottoms_#{$option} .nav_mens .nav_clothing .nav_bottoms > span a,
+    .nav_mens_clothing_bottoms_#{$option} .nav_mens .nav_clothing .nav_bottoms .nav_#{$option} > span a {
+      background: rgba(255,255,255,0);
+      color: #fefefe !important;
+    }
+    //Third and fourth tier
+    .nav_mens_clothing_bottoms_#{$option} .nav_mens > ul,
+    .nav_mens_clothing_bottoms_#{$option} .nav_mens .nav_clothing > ul,
+    .nav_mens_clothing_bottoms_#{$option} .nav_mens .nav_clothing .nav_bottoms > ul,
+    .nav_mens_clothing_bottoms_#{$option} .nav_mens .nav_clothing .nav_bottoms .nav_#{$option} > ul {
+        @include selected-ul;
+  }
+
+}
+
+// Overrides for deep categories
+  @each $option in $mens-clothing-tops-nav-list {
+    .nav_mens_clothing_tops_#{$option} #content-pane {
+      margin-top: 200px;  
+    }
+  }
+
+  .nav_mens_clothing_bottoms #content-pane,
+  .nav_mens_clothing_tops #content-pane
+   {
+    margin-top: 200px;  
+  }
+
+// End Mens
+
+
+// Begin Womens
+// Womens
+  @each $option in $womens-nav-list {
+      .nav_womens_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_womens_#{$option} .nav_womens > span a,
+      .nav_womens_#{$option} .nav_womens .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_womens_#{$option} .nav_womens > ul,
+      .nav_womens_#{$option} .nav_womens .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+  // Womens Shoes
+  @each $option in $womens-shoes-nav-list {
+      .nav_womens_shoes_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_womens_shoes_#{$option} .nav_womens > span a,
+      .nav_womens_shoes_#{$option} .nav_womens .nav_shoes > span a,
+      .nav_womens_shoes_#{$option} .nav_womens .nav_shoes .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_womens_shoes_#{$option} .nav_womens > ul,
+      .nav_womens_shoes_#{$option} .nav_womens .nav_shoes > ul,
+      .nav_womens_shoes_#{$option} .nav_womens .nav_shoes .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+// Womens Clothing
+  @each $option in $womens-clothing-nav-list {
+      .nav_womens_clothing_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_womens_clothing_#{$option} .nav_womens > span a,
+      .nav_womens_clothing_#{$option} .nav_womens .nav_clothing > span a,
+      .nav_womens_clothing_#{$option} .nav_womens .nav_clothing .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_womens_clothing_#{$option} .nav_womens > ul,
+      .nav_womens_clothing_#{$option} .nav_womens .nav_clothing > ul,
+      .nav_womens_clothing_#{$option} .nav_womens .nav_clothing .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+// Womens Clothing Tops
+  @each $option in $womens-clothing-tops-nav-list {
+      .nav_womens_clothing_tops_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_womens_clothing_tops_#{$option} .nav_womens > span a,
+      .nav_womens_clothing_tops_#{$option} .nav_womens .nav_clothing > span a,
+      .nav_womens_clothing_tops_#{$option} .nav_womens .nav_clothing .nav_tops > span a,
+      .nav_womens_clothing_tops_#{$option} .nav_womens .nav_clothing .nav_tops .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_womens_clothing_tops_#{$option} .nav_womens > ul,
+      .nav_womens_clothing_tops_#{$option} .nav_womens .nav_clothing > ul,
+      .nav_womens_clothing_tops_#{$option} .nav_womens .nav_clothing .nav_tops > ul,
+      .nav_womens_clothing_tops_#{$option} .nav_womens .nav_clothing .nav_tops .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+//Womens Clothing Bottoms
+  @each $option in $womens-clothing-bottoms-nav-list {
+    .nav_womens_clothing_bottoms_#{$option} #content-pane {
+      margin-top: 200px;  
+    }
+
+    // Second tier
+    .nav_womens_clothing_bottoms_#{$option} .nav_womens > span a,
+    .nav_womens_clothing_bottoms_#{$option} .nav_womens .nav_clothing > span a,
+    .nav_womens_clothing_bottoms_#{$option} .nav_womens .nav_clothing .nav_bottoms > span a,
+    .nav_womens_clothing_bottoms_#{$option} .nav_womens .nav_clothing .nav_bottoms .nav_#{$option} > span a {
+      background: rgba(255,255,255,0);
+      color: #fefefe !important;
+    }
+    //Third and fourth tier
+    .nav_womens_clothing_bottoms_#{$option} .nav_womens > ul,
+    .nav_womens_clothing_bottoms_#{$option} .nav_womens .nav_clothing > ul,
+    .nav_womens_clothing_bottoms_#{$option} .nav_womens .nav_clothing .nav_bottoms > ul,
+    .nav_womens_clothing_bottoms_#{$option} .nav_womens .nav_clothing .nav_bottoms .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+
+  }
+
+//Womens Clothing Underwear
+  @each $option in $womens-clothing-underwear-nav-list {
+    .nav_womens_clothing_underwear_#{$option} #content-pane {
+      margin-top: 200px;  
+    }
+
+    // Second tier
+    .nav_womens_clothing_underwear_#{$option} .nav_womens > span a,
+    .nav_womens_clothing_underwear_#{$option} .nav_womens .nav_clothing > span a,
+    .nav_womens_clothing_underwear_#{$option} .nav_womens .nav_clothing .nav_underwear > span a,
+    .nav_womens_clothing_underwear_#{$option} .nav_womens .nav_clothing .nav_underwear .nav_#{$option} > span a {
+      background: rgba(255,255,255,0);
+      color: #fefefe !important;
+    }
+    //Third and fourth tier
+    .nav_womens_clothing_underwear_#{$option} .nav_womens > ul,
+    .nav_womens_clothing_underwear_#{$option} .nav_womens .nav_clothing > ul,
+    .nav_womens_clothing_underwear_#{$option} .nav_womens .nav_clothing .nav_underwear > ul,
+    .nav_womens_clothing_underwear_#{$option} .nav_womens .nav_clothing .nav_underwear .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+
+  }
+
+// Overrides for deep categories
+  @each $option in $womens-clothing-tops-nav-list {
+    .nav_womens_clothing_tops_#{$option} #content-pane {
+      margin-top: 200px;  
+    }
+  }
+  @each $option in $womens-clothing-bottoms-nav-list {
+    .nav_womens_clothing_bottoms_#{$option} #content-pane {
+      margin-top: 200px;  
+    }
+  }
+  @each $option in $womens-clothing-underwear-nav-list {
+    .nav_womens_clothing_underwear_#{$option} #content-pane {
+      margin-top: 200px;  
+    }
+  }
+
+  .nav_womens_clothing_underwear #content-pane,
+  .nav_womens_clothing_bottoms #content-pane,
+  .nav_womens_clothing_tops #content-pane
+   {
+    margin-top: 200px;  
+  }
+// End Womens
+
+// Tech
   @each $option in $tech-nav-list {
-	    .nav_tech.nav_#{$option} #content-pane {
-	      margin-top: 150px;  
-	    }
-	}
+      .nav_tech_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_tech_#{$option} .nav_tech > span a,
+      .nav_tech_#{$option} .nav_tech .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_tech_#{$option} .nav_tech > ul,
+      .nav_tech_#{$option} .nav_tech .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+// Tech Audio
+  @each $option in $tech-audio-nav-list {
+      .nav_tech_audio_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_tech_audio_#{$option} .nav_tech > span a,
+      .nav_tech_audio_#{$option} .nav_tech .nav_audio > span a,
+      .nav_tech_audio_#{$option} .nav_tech .nav_audio .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_tech_audio_#{$option} .nav_tech > ul,
+      .nav_tech_audio_#{$option} .nav_tech .nav_audio > ul,
+      .nav_tech_audio_#{$option} .nav_tech .nav_audio .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+// Tech Cameras
+  @each $option in $tech-cameras-nav-list {
+      .nav_tech_cameras_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_tech_cameras_#{$option} .nav_tech > span a,
+      .nav_tech_cameras_#{$option} .nav_tech .nav_cameras > span a,
+      .nav_tech_cameras_#{$option} .nav_tech .nav_cameras .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_tech_cameras_#{$option} .nav_tech > ul,
+      .nav_tech_cameras_#{$option} .nav_tech .nav_cameras > ul,
+      .nav_tech_cameras_#{$option} .nav_tech .nav_cameras .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+// Tech Accessories
+  @each $option in $tech-other-nav-list {
+      .nav_tech_accessories_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_tech_accessories_#{$option} .nav_tech > span a,
+      .nav_tech_accessories_#{$option} .nav_tech .nav_accessories > span a,
+      .nav_tech_accessories_#{$option} .nav_tech .nav_accessories .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_tech_accessories_#{$option} .nav_tech > ul,
+      .nav_tech_accessories_#{$option} .nav_tech .nav_accessories > ul,
+      .nav_tech_accessories_#{$option} .nav_tech .nav_accessories .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+// Tech End
+
+// Media
+  @each $option in $media-nav-list {
+      .nav_media_#{$option} #content-pane {
+        margin-top: 100px;  
+      }
+      // Second tier
+      .nav_media_#{$option} .nav_media > span a,
+      .nav_media_#{$option} .nav_media .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_media_#{$option} .nav_media > ul,
+      .nav_media_#{$option} .nav_media .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+// Media End
+
+// Home
+  @each $option in $home-nav-list {
+      .nav_home_#{$option} #content-pane {
+        margin-top: 100px;  
+      }
+      // Second tier
+      .nav_home_#{$option} .nav_home > span a,
+      .nav_home_#{$option} .nav_home .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_home_#{$option} .nav_home > ul,
+      .nav_home_#{$option} .nav_home .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+
+// Home Kitchen
+  @each $option in $home-kitchen-nav-list {
+      .nav_home_kitchen_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_home_kitchen_#{$option} .nav_home > span a,
+      .nav_home_kitchen_#{$option} .nav_home .nav_kitchen > span a,
+      .nav_home_kitchen_#{$option} .nav_home .nav_kitchen .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_home_kitchen_#{$option} .nav_home > ul,
+      .nav_home_kitchen_#{$option} .nav_home .nav_kitchen > ul,
+      .nav_home_kitchen_#{$option} .nav_home .nav_kitchen .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+// Home Decor
+  @each $option in $home-decor-nav-list {
+      .nav_home_decor_#{$option} #content-pane {
+        margin-top: 150px;  
+      }
+      // Second tier
+      .nav_home_decor_#{$option} .nav_home > span a,
+      .nav_home_decor_#{$option} .nav_home .nav_decor > span a,
+      .nav_home_decor_#{$option} .nav_home .nav_decor .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_home_decor_#{$option} .nav_home > ul,
+      .nav_home_decor_#{$option} .nav_home .nav_decor > ul,
+      .nav_home_decor_#{$option} .nav_home .nav_decor .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+
+// Deep categories
+.nav_home_kitchen #content-pane,
+.nav_home_decor #content-pane { margin-top: 150px; }
+// Home End
+
+
+// Art
+  @each $option in $art-nav-list {
+      .nav_art_#{$option} #content-pane {
+        margin-top: 100px;  
+      }
+      // Second tier
+      .nav_art_#{$option} .nav_art > span a,
+      .nav_art_#{$option} .nav_art .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_art_#{$option} .nav_art > ul,
+      .nav_art_#{$option} .nav_art .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+// Art End
+
+// Other
+  @each $option in $other-nav-list {
+      .nav_other_#{$option} #content-pane {
+        margin-top: 100px;  
+      }
+      // Second tier
+      .nav_other_#{$option} .nav_other > span a,
+      .nav_other_#{$option} .nav_other .nav_#{$option} > span a {
+        background: rgba(255,255,255,0);
+        color: #fefefe !important;
+      }
+      .nav_other_#{$option} .nav_other > ul,
+      .nav_other_#{$option} .nav_other .nav_#{$option} > ul {
+        @include selected-ul;
+    }
+  }
+// Other End
+
 
 }
 @include primary-nav;
 
 
-/*3 Deep*/
-  .nav_home.nav_decor #content-pane,
-  .nav_home.nav_kitchen #content-pane {
-    margin-top: 150px;
-  }
-
-/*4 Deep*/
-  .nav_mens.nav_clothing.nav_bottoms #content-pane,
-  .nav_mens.nav_clothing.nav_tops #content-pane,
-
-  .nav_womens.nav_clothing.nav_bottoms #content-pane,
-  .nav_womens.nav_clothing.nav_tops #content-pane,
-  .nav-womens.nav_clothing.nav_outerwear #content-pane,
-  .nav-womens.nav_clothing.nav_underwear #content-pane,
-  .nav-womens.nav_clothing.nav_dresses #content-pane {
-    margin-top: 200px;
-  }
 
 .product-view #content-pane {
   margin-top: 80px !important;
@@ -281,118 +711,12 @@ $primary-nav-list: mens womens tech media home art other;
 		    color: #fefefe !important;
 	    }
 	    .nav_#{$option} .nav_#{$option} > ul {
-			display: table;
-			position: absolute;
-			pointer-events: auto !important;
-			z-index: 3;
-			top: 100%;
-			left: 0;
-			width: 100%;
-			opacity: 1;
+        @include selected-ul;
 		}
 	}	
 }
 @include span-backer;
 
-  .nav_mens.nav_clothing.nav_tops .nav_mens .nav_clothing .nav_tops > ul,
-  .nav_mens.nav_clothing.nav_bottoms .nav_mens .nav_clothing .nav_bottoms > ul,
-  .nav_mens.nav_clothing.nav_tops .nav_mens .nav_clothing .nav_tops > ul,
-  .nav_mens.nav_clothing .nav_mens .nav_clothing > ul,
-  .nav_mens.nav_shoes .nav_mens .nav_shoes > ul,
-  .nav_mens.nav_accessories .nav_mens .nav_accessories > ul,
-
-  .nav_womens.nav_clothing.nav_tops .nav_womens .nav_clothing .nav_tops > ul,
-  .nav_womens.nav_clothing.nav_bottoms .nav_womens .nav_clothing .nav_bottoms > ul,
-  .nav_womens.nav_clothing.nav_tops .nav_womens .nav_clothing .nav_tops > ul,
-  .nav_womens.nav_clothing .nav_womens .nav_clothing > ul,
-  .nav_womens.nav_shoes .nav_womens .nav_shoes > ul,
-  .nav_womens.nav_accessories .nav_womens .nav_accessories > ul {
-  display: table;
-  position: absolute;
-  pointer-events: auto !important;
-  z-index: 3;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  opacity: 1;
-  }
-
-  .nav_tech.nav_audio .nav_tech .nav_audio > ul,
-  .nav_tech.nav_cameras .nav_tech .nav_cameras  > ul,
-  .nav_tech.nav_accessories .nav_tech .nav_accessories > ul {
-    display: table;
-    position: absolute;
-    pointer-events: auto !important;
-    z-index: 3;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    opacity: 1;
-  }
-  .nav_home.nav_decor .nav_home .nav_decor > ul, 
-  .nav_home.nav_furniture .nav_home .nav_furniture > ul,
-  .nav_home.nav_bath .nav_home .nav_bath > ul, 
-  .nav_home.nav_bedding .nav_home .nav_bedding > ul,
-  .nav_home.nav_kitchen .nav_home .nav_kitchen > ul {
-    display: table;
-    position: absolute;
-    pointer-events: auto !important;
-    z-index: 3;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    opacity: 1;
-  }
-
-  .nav_womens.nav_clothing.nav_tops .nav_womens .nav_clothing .nav_tops > ul + span a,
-  .nav_womens.nav_clothing.nav_bottoms .nav_womens .nav_clothing .nav_bottoms  > ul + span a,
-  .nav_womens.nav_clothing.nav_tops .nav_womens .nav_clothing .nav_tops > ul + span a,
-  .nav_womens.nav_clothing .nav_womens .nav_clothing > ul + span a,
-  .nav_womens.nav_shoes .nav_womens .nav_shoes > ul + span a,
-  .nav_womens.nav_accessories .nav_womens .nav_accessories > ul + span a,
-
-  .nav_mens.nav_clothing.nav_tops .nav_mens .nav_clothing .nav_tops > ul + span a,
-  .nav_mens.nav_clothing.nav_bottoms .nav_mens .nav_clothing .nav_bottoms  > ul + span a,
-  .nav_mens.nav_clothing.nav_tops .nav_mens .nav_clothing .nav_tops > ul + span a,
-  .nav_mens.nav_clothing .nav_mens .nav_clothing > ul + span a,
-  .nav_mens.nav_shoes .nav_mens .nav_shoes > ul + span a,
-  .nav_mens.nav_accessories .nav_mens .nav_accessories > ul + span a,
-
-  .nav_tech.nav_audio .nav_tech .nav_audio > ul + span a,
-  .nav_tech.nav_cameras .nav_tech .nav_cameras  > ul + span a,
-  .nav_tech.nav_accessories .nav_tech .nav_accessories > ul + span a,
-
-  .nav_home.nav_decor .nav_home .nav_decor > ul + span a,
-  .nav_home.nav_furniture .nav_home .nav_furniture > span a,
-  .nav_home.nav_bath .nav_home .nav_bath > span a,
-  .nav_home.nav_bedding .nav_home .nav_bedding > span a,
-  .nav_home.nav_kitchen .nav_home .nav_kitchen > ul + span a,
-
-  .nav_art.nav_supplies .nav_art .nav_supplies > span a,
-  .nav_art.nav_collage .nav_art .nav_collage > span a,
-  .nav_art.nav_photography .nav_art .nav_photography > span a,
-  .nav_art.nav_3d .nav_art .nav_3d > span a,
-  .nav_art.nav_posters .nav_art .nav_posters > span a {
-    background: rgba(255,255,255,0);
-    color: #fefefe !important;    
-  }
-
-/*Cul-de-sac categories*/
-
-  .nav_media.nav_books-music .nav_media .nav_books-music > span a,
-  .nav_media.nav_movies .nav_media .nav_movies > span a,
-
-  .nav_other.nav_booze .nav_other .nav_booze > span a,
-  .nav_other.nav_cycling .nav_other .nav_cycling > span a,
-  .nav_other.nav_toys .nav_other .nav_toys > span a,
-  .nav_other.nav_games .nav_other .nav_games > span a,
-  .nav_other.nav_antiques .nav_other .nav_antiques > span a,
-  .nav_other.nav_pets .nav_other .nav_pets > span a,
-  .nav_other.nav_tools .nav_other .nav_tools > span a,
-  .nav_other.nav_camping .nav_other .nav_camping > span a {
-    background: rgba(255,255,255,0);
-    color: #fefefe !important;    
-  }
 
 
 /*Main application*/
@@ -509,6 +833,13 @@ margin-top: -80px;
   color: inherit;
   text-decoration: none;
   margin-left: 5px;
+  img {
+    width: 50px;
+    -moz-border-radius:52px;
+    -webkit-border-radius:52px;
+    border-radius:52px;
+    margin-left: 5px;
+  }
 }
 .user-name {
   font-weight: bold;
@@ -517,13 +848,6 @@ margin-top: -80px;
   position: absolute;
   margin-left: 5px;
   white-space: nowrap;
-	img {
-		width: 50px;
-		-moz-border-radius:52px;
-		-webkit-border-radius:52px;
-		border-radius:52px;
-		margin-left: 5px;
-	}
 }
 
 /*Product details*/
