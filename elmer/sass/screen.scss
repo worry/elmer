@@ -3,6 +3,21 @@
 @import "../../vendor/h5bp/css/normalize.css";
 @import "../../vendor/h5bp/css/main.css";
 
+@mixin selected-ul {
+      display: table;
+      position: absolute;
+      pointer-events: auto !important;
+      z-index: 3;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      opacity: 1;
+}
+@mixin selected-span {
+      background: rgba(255,255,255,0);
+      color: #fefefe !important;
+}
+
 /*-- Application stylesheets. -----------------------------------------------*/
 /* 
 html5doctor.com Reset Stylesheet
@@ -157,8 +172,7 @@ body {
 			white-space: nowrap;
 			background: rgba(0,0,0,1);
 			&:hover {
-			  background: rgba(255,255,255,0.0);
-			  color: #fefefe !important;
+        @include selected-span;
 			}
 	  	}
 	}
@@ -185,17 +199,6 @@ body {
 		position: absolute;
 		top: 0;
 	}
-}
-
-@mixin selected-ul {
-      display: table;
-      position: absolute;
-      pointer-events: auto !important;
-      z-index: 3;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      opacity: 1;
 }
 
 $primary-nav-list: mens womens tech media home art other;
@@ -243,8 +246,7 @@ $primary-nav-list: mens womens tech media home art other;
       // Second tier
       .nav_mens_#{$option} .nav_mens > span a,
       .nav_mens_#{$option} .nav_mens .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_mens_#{$option} .nav_mens > ul,
       .nav_mens_#{$option} .nav_mens .nav_#{$option} > ul {
@@ -261,8 +263,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_mens_shoes_#{$option} .nav_mens > span a,
       .nav_mens_shoes_#{$option} .nav_mens .nav_shoes > span a,
       .nav_mens_shoes_#{$option} .nav_mens .nav_shoes .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_mens_shoes_#{$option} .nav_mens > ul,
       .nav_mens_shoes_#{$option} .nav_mens .nav_shoes > ul,
@@ -280,8 +281,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_mens_accessories_#{$option} .nav_mens > span a,
       .nav_mens_accessories_#{$option} .nav_mens .nav_accessories > span a,
       .nav_mens_accessories_#{$option} .nav_mens .nav_accessories .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_mens_accessories_#{$option} .nav_mens > ul,
       .nav_mens_accessories_#{$option} .nav_mens .nav_accessories > ul,
@@ -300,8 +300,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_mens_accessories_bags_#{$option} .nav_mens .nav_accessories > span a,
       .nav_mens_accessories_bags_#{$option} .nav_mens .nav_accessories .nav_bags > span a,
       .nav_mens_accessories_bags_#{$option} .nav_mens .nav_accessories .nav_bags .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_mens_accessories_bags_#{$option} .nav_mens > ul,
       .nav_mens_accessories_bags_#{$option} .nav_mens .nav_accessories > ul,
@@ -321,8 +320,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_mens_accessories_watches_#{$option} .nav_mens .nav_accessories > span a,
       .nav_mens_accessories_watches_#{$option} .nav_mens .nav_accessories .nav_watches > span a,
       .nav_mens_accessories_watches_#{$option} .nav_mens .nav_accessories .nav_watches .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_mens_accessories_watches_#{$option} .nav_mens > ul,
       .nav_mens_accessories_watches_#{$option} .nav_mens .nav_accessories > ul,
@@ -342,8 +340,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_mens_accessories_hats_#{$option} .nav_mens .nav_accessories > span a,
       .nav_mens_accessories_hats_#{$option} .nav_mens .nav_accessories .nav_hats > span a,
       .nav_mens_accessories_hats_#{$option} .nav_mens .nav_accessories .nav_hats .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_mens_accessories_hats_#{$option} .nav_mens > ul,
       .nav_mens_accessories_hats_#{$option} .nav_mens .nav_accessories > ul,
@@ -362,8 +359,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_mens_clothing_#{$option} .nav_mens > span a,
       .nav_mens_clothing_#{$option} .nav_mens .nav_clothing > span a,
       .nav_mens_clothing_#{$option} .nav_mens .nav_clothing .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_mens_clothing_#{$option} .nav_mens > ul,
       .nav_mens_clothing_#{$option} .nav_mens .nav_clothing > ul,
@@ -382,8 +378,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_mens_clothing_tops_#{$option} .nav_mens .nav_clothing > span a,
       .nav_mens_clothing_tops_#{$option} .nav_mens .nav_clothing .nav_tops > span a,
       .nav_mens_clothing_tops_#{$option} .nav_mens .nav_clothing .nav_tops .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_mens_clothing_tops_#{$option} .nav_mens > ul,
       .nav_mens_clothing_tops_#{$option} .nav_mens .nav_clothing > ul,
@@ -404,8 +399,7 @@ $primary-nav-list: mens womens tech media home art other;
     .nav_mens_clothing_bottoms_#{$option} .nav_mens .nav_clothing > span a,
     .nav_mens_clothing_bottoms_#{$option} .nav_mens .nav_clothing .nav_bottoms > span a,
     .nav_mens_clothing_bottoms_#{$option} .nav_mens .nav_clothing .nav_bottoms .nav_#{$option} > span a {
-      background: rgba(255,255,255,0);
-      color: #fefefe !important;
+        @include selected-span;
     }
     //Third and fourth tier
     .nav_mens_clothing_bottoms_#{$option} .nav_mens > ul,
@@ -445,8 +439,7 @@ $primary-nav-list: mens womens tech media home art other;
       // Second tier
       .nav_womens_#{$option} .nav_womens > span a,
       .nav_womens_#{$option} .nav_womens .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_womens_#{$option} .nav_womens > ul,
       .nav_womens_#{$option} .nav_womens .nav_#{$option} > ul {
@@ -463,8 +456,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_womens_accessories_#{$option} .nav_womens > span a,
       .nav_womens_accessories_#{$option} .nav_womens .nav_accessories > span a,
       .nav_womens_accessories_#{$option} .nav_womens .nav_accessories .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_womens_accessories_#{$option} .nav_womens > ul,
       .nav_womens_accessories_#{$option} .nav_womens .nav_accessories > ul,
@@ -484,8 +476,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_womens_accessories_bags_#{$option} .nav_womens .nav_accessories > span a,
       .nav_womens_accessories_bags_#{$option} .nav_womens .nav_accessories .nav_bags > span a,
       .nav_womens_accessories_bags_#{$option} .nav_womens .nav_accessories .nav_bags .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_womens_accessories_bags_#{$option} .nav_womens > ul,
       .nav_womens_accessories_bags_#{$option} .nav_womens .nav_accessories > ul,
@@ -504,8 +495,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_womens_shoes_#{$option} .nav_womens > span a,
       .nav_womens_shoes_#{$option} .nav_womens .nav_shoes > span a,
       .nav_womens_shoes_#{$option} .nav_womens .nav_shoes .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_womens_shoes_#{$option} .nav_womens > ul,
       .nav_womens_shoes_#{$option} .nav_womens .nav_shoes > ul,
@@ -523,8 +513,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_womens_clothing_#{$option} .nav_womens > span a,
       .nav_womens_clothing_#{$option} .nav_womens .nav_clothing > span a,
       .nav_womens_clothing_#{$option} .nav_womens .nav_clothing .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_womens_clothing_#{$option} .nav_womens > ul,
       .nav_womens_clothing_#{$option} .nav_womens .nav_clothing > ul,
@@ -543,8 +532,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_womens_clothing_tops_#{$option} .nav_womens .nav_clothing > span a,
       .nav_womens_clothing_tops_#{$option} .nav_womens .nav_clothing .nav_tops > span a,
       .nav_womens_clothing_tops_#{$option} .nav_womens .nav_clothing .nav_tops .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_womens_clothing_tops_#{$option} .nav_womens > ul,
       .nav_womens_clothing_tops_#{$option} .nav_womens .nav_clothing > ul,
@@ -565,8 +553,7 @@ $primary-nav-list: mens womens tech media home art other;
     .nav_womens_clothing_bottoms_#{$option} .nav_womens .nav_clothing > span a,
     .nav_womens_clothing_bottoms_#{$option} .nav_womens .nav_clothing .nav_bottoms > span a,
     .nav_womens_clothing_bottoms_#{$option} .nav_womens .nav_clothing .nav_bottoms .nav_#{$option} > span a {
-      background: rgba(255,255,255,0);
-      color: #fefefe !important;
+        @include selected-span;
     }
     //Third and fourth tier
     .nav_womens_clothing_bottoms_#{$option} .nav_womens > ul,
@@ -589,8 +576,7 @@ $primary-nav-list: mens womens tech media home art other;
     .nav_womens_clothing_underwear_#{$option} .nav_womens .nav_clothing > span a,
     .nav_womens_clothing_underwear_#{$option} .nav_womens .nav_clothing .nav_underwear > span a,
     .nav_womens_clothing_underwear_#{$option} .nav_womens .nav_clothing .nav_underwear .nav_#{$option} > span a {
-      background: rgba(255,255,255,0);
-      color: #fefefe !important;
+        @include selected-span;
     }
     //Third and fourth tier
     .nav_womens_clothing_underwear_#{$option} .nav_womens > ul,
@@ -619,6 +605,10 @@ $primary-nav-list: mens womens tech media home art other;
     }
   }
 
+  .nav_womens_accessories_bags #content-pane {
+    margin-top: 200px;
+  }
+
   .nav_womens_beauty #content-pane {
     margin-top: 100px;
   }
@@ -639,8 +629,7 @@ $primary-nav-list: mens womens tech media home art other;
       // Second tier
       .nav_tech_#{$option} .nav_tech > span a,
       .nav_tech_#{$option} .nav_tech .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_tech_#{$option} .nav_tech > ul,
       .nav_tech_#{$option} .nav_tech .nav_#{$option} > ul {
@@ -657,8 +646,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_tech_audio_#{$option} .nav_tech > span a,
       .nav_tech_audio_#{$option} .nav_tech .nav_audio > span a,
       .nav_tech_audio_#{$option} .nav_tech .nav_audio .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_tech_audio_#{$option} .nav_tech > ul,
       .nav_tech_audio_#{$option} .nav_tech .nav_audio > ul,
@@ -676,8 +664,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_tech_cameras_#{$option} .nav_tech > span a,
       .nav_tech_cameras_#{$option} .nav_tech .nav_cameras > span a,
       .nav_tech_cameras_#{$option} .nav_tech .nav_cameras .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_tech_cameras_#{$option} .nav_tech > ul,
       .nav_tech_cameras_#{$option} .nav_tech .nav_cameras > ul,
@@ -695,8 +682,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_tech_accessories_#{$option} .nav_tech > span a,
       .nav_tech_accessories_#{$option} .nav_tech .nav_accessories > span a,
       .nav_tech_accessories_#{$option} .nav_tech .nav_accessories .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_tech_accessories_#{$option} .nav_tech > ul,
       .nav_tech_accessories_#{$option} .nav_tech .nav_accessories > ul,
@@ -714,8 +700,7 @@ $primary-nav-list: mens womens tech media home art other;
       // Second tier
       .nav_media_#{$option} .nav_media > span a,
       .nav_media_#{$option} .nav_media .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_media_#{$option} .nav_media > ul,
       .nav_media_#{$option} .nav_media .nav_#{$option} > ul {
@@ -732,8 +717,7 @@ $primary-nav-list: mens womens tech media home art other;
       // Second tier
       .nav_home_#{$option} .nav_home > span a,
       .nav_home_#{$option} .nav_home .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_home_#{$option} .nav_home > ul,
       .nav_home_#{$option} .nav_home .nav_#{$option} > ul {
@@ -751,8 +735,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_home_kitchen_#{$option} .nav_home > span a,
       .nav_home_kitchen_#{$option} .nav_home .nav_kitchen > span a,
       .nav_home_kitchen_#{$option} .nav_home .nav_kitchen .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_home_kitchen_#{$option} .nav_home > ul,
       .nav_home_kitchen_#{$option} .nav_home .nav_kitchen > ul,
@@ -770,8 +753,7 @@ $primary-nav-list: mens womens tech media home art other;
       .nav_home_decor_#{$option} .nav_home > span a,
       .nav_home_decor_#{$option} .nav_home .nav_decor > span a,
       .nav_home_decor_#{$option} .nav_home .nav_decor .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_home_decor_#{$option} .nav_home > ul,
       .nav_home_decor_#{$option} .nav_home .nav_decor > ul,
@@ -794,8 +776,7 @@ $primary-nav-list: mens womens tech media home art other;
       // Second tier
       .nav_art_#{$option} .nav_art > span a,
       .nav_art_#{$option} .nav_art .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_art_#{$option} .nav_art > ul,
       .nav_art_#{$option} .nav_art .nav_#{$option} > ul {
@@ -812,8 +793,7 @@ $primary-nav-list: mens womens tech media home art other;
       // Second tier
       .nav_other_#{$option} .nav_other > span a,
       .nav_other_#{$option} .nav_other .nav_#{$option} > span a {
-        background: rgba(255,255,255,0);
-        color: #fefefe !important;
+        @include selected-span;
       }
       .nav_other_#{$option} .nav_other > ul,
       .nav_other_#{$option} .nav_other .nav_#{$option} > ul {
@@ -841,8 +821,7 @@ $primary-nav-list: mens womens tech media home art other;
 
   @each $option in $primary-nav-list {
 	    .nav_#{$option} .nav_#{$option} > ul + span a {
-		    background: rgba(255,255,255,0);
-		    color: #fefefe !important;
+        @include selected-span;
 	    }
 	    .nav_#{$option} .nav_#{$option} > ul {
         @include selected-ul;
@@ -1068,12 +1047,24 @@ margin-top: -80px;
   color: #b5b5b5 !important;
 }
 
+
+// Animation keyframes
+.loading {
+    -moz-animation:spin 1.5s infinite circular;
+  -webkit-animation:spin 1.5s infinite circular;
+  overflow: hidden;
+}
+.loading:after {
+
+}
+
 .category > ul,
 .category > .category-name,
 .category-name + span,
 .category a,
 .category-nav a,
-#primary-navigation {
+#primary-navigation,
+#content-pane {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
