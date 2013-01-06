@@ -1047,15 +1047,44 @@ margin-top: -80px;
   color: #b5b5b5 !important;
 }
 
-
 // Animation keyframes
-.loading {
-    -moz-animation:spin 1.5s infinite circular;
-  -webkit-animation:spin 1.5s infinite circular;
-  overflow: hidden;
+@-moz-keyframes move{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
 }
-.loading:after {
+@-webkit-keyframes move{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
 
+.loading {
+  overflow: hidden;
+  span {
+    font-size: 1.2em;
+  }
+  .dot-1 {
+    font-size: 1.4em;
+    -moz-animation:move 1.5s infinite linear;
+    -webkit-animation:move 1.5s infinite linear;
+  }
+  .dot-2 {
+    font-size: 1.4em;
+    -moz-animation:move 2.0s infinite linear;
+    -webkit-animation:move 2.0s infinite linear;
+  }
+  .dot-3 {
+    font-size: 1.4em;
+    -moz-animation:move 2.5s infinite linear;
+    -webkit-animation:move 2.5s infinite linear;
+  }
 }
 
 .category > ul,

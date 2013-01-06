@@ -58,7 +58,7 @@
 
 
             //Set the content pane to a loading screen
-            $('#content-pane').html('<div class="loading">loading data...</div>');
+            $('#content-pane').html('<div class="loading">loading data<span class="dot-1">.</span><span class="dot-2">.</span><span class="dot-3">.</span></div>');
 
             //Load the data in using jQuerys ajax call
 

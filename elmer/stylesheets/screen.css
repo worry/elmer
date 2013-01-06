@@ -4198,14 +4198,58 @@ body {
   color: #b5b5b5 !important;
 }
 
-/* line 1052, ../sass/screen.scss */
-.loading {
-  -moz-animation: spin 1.5s infinite circular;
-  -webkit-animation: spin 1.5s infinite circular;
-  overflow: hidden;
+@-moz-keyframes move {
+  /* line 1052, ../sass/screen.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 1055, ../sass/screen.scss */
+  100% {
+    opacity: 1;
+  }
 }
 
-/* line 1067, ../sass/screen.scss */
+@-webkit-keyframes move {
+  /* line 1060, ../sass/screen.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 1063, ../sass/screen.scss */
+  100% {
+    opacity: 1;
+  }
+}
+
+/* line 1068, ../sass/screen.scss */
+.loading {
+  overflow: hidden;
+}
+/* line 1070, ../sass/screen.scss */
+.loading span {
+  font-size: 1.2em;
+}
+/* line 1073, ../sass/screen.scss */
+.loading .dot-1 {
+  font-size: 1.4em;
+  -moz-animation: move 1.5s infinite linear;
+  -webkit-animation: move 1.5s infinite linear;
+}
+/* line 1078, ../sass/screen.scss */
+.loading .dot-2 {
+  font-size: 1.4em;
+  -moz-animation: move 2.0s infinite linear;
+  -webkit-animation: move 2.0s infinite linear;
+}
+/* line 1083, ../sass/screen.scss */
+.loading .dot-3 {
+  font-size: 1.4em;
+  -moz-animation: move 2.5s infinite linear;
+  -webkit-animation: move 2.5s infinite linear;
+}
+
+/* line 1096, ../sass/screen.scss */
 .category > ul,
 .category > .category-name,
 .category-name + span,
