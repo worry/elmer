@@ -4222,34 +4222,85 @@ body {
   }
 }
 
-/* line 1068, ../sass/screen.scss */
+/* line 1069, ../sass/screen.scss */
+.site-explanation {
+  display: none;
+  width: 50%;
+  margin: 0 auto;
+  border-top: 25px solid rgba(0, 0, 0, 0.5);
+  border-right: 25px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 25px solid rgba(0, 0, 0, 0.8);
+  border-left: 25px solid rgba(0, 0, 0, 0.4);
+}
+
+/* line 1078, ../sass/screen.scss */
+.site-explanation-contents {
+  background: rgba(224, 224, 224, 0.9);
+  padding: 20px;
+}
+/* line 1081, ../sass/screen.scss */
+.site-explanation-contents p {
+  line-height: 1.2;
+  font-size: 16px;
+}
+/* line 1085, ../sass/screen.scss */
+.site-explanation-contents a {
+  text-decoration: underline;
+  color: black;
+}
+/* line 1089, ../sass/screen.scss */
+.site-explanation-contents a:hover {
+  color: #990000;
+}
+/* line 1093, ../sass/screen.scss */
+.site-explanation-contents .end-tagline {
+  margin: 25px 0 0;
+}
+/* line 1096, ../sass/screen.scss */
+.site-explanation-contents .author {
+  margin-bottom: 80px;
+  display: inline-block;
+}
+/* line 1100, ../sass/screen.scss */
+.site-explanation-contents .user-avatar {
+  left: 50%;
+  margin: 40px 0 0 -26px;
+}
+
+/* line 1105, ../sass/screen.scss */
+.initial-load .site-explanation {
+  display: block;
+}
+
+/* line 1109, ../sass/screen.scss */
 .loading {
   overflow: hidden;
 }
-/* line 1070, ../sass/screen.scss */
+/* line 1111, ../sass/screen.scss */
 .loading span {
   font-size: 1.2em;
 }
-/* line 1073, ../sass/screen.scss */
+/* line 1114, ../sass/screen.scss */
 .loading .dot-1 {
   font-size: 1.4em;
   -moz-animation: move 1.5s infinite linear;
   -webkit-animation: move 1.5s infinite linear;
 }
-/* line 1078, ../sass/screen.scss */
+/* line 1119, ../sass/screen.scss */
 .loading .dot-2 {
   font-size: 1.4em;
   -moz-animation: move 2.0s infinite linear;
   -webkit-animation: move 2.0s infinite linear;
 }
-/* line 1083, ../sass/screen.scss */
+/* line 1124, ../sass/screen.scss */
 .loading .dot-3 {
   font-size: 1.4em;
   -moz-animation: move 2.5s infinite linear;
   -webkit-animation: move 2.5s infinite linear;
 }
 
-/* line 1096, ../sass/screen.scss */
+/* line 1138, ../sass/screen.scss */
+.site-explanation-contents a,
 .category > ul,
 .category > .category-name,
 .category-name + span,

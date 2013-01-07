@@ -42,9 +42,7 @@
         },
         fullAction:function (category) {
             routerLocation = 'fullAction';
-            //Once the default action is called we want to construct a link to our restful service
             //This one may be too specific to be the full action, because it starts with the shop category.
-            //Category list seems to not work when navigating to a new page.
             var restfulPageUrl = this.restfulUrl + 'shop' + category + '.json';
             $('body').attr({class: ''});
             categoryList = category.replace(/\//g,'_');
@@ -55,14 +53,9 @@
             console.log('full action');
         },
         loadRestfulData:function (pageUrl) {
-
-
             //Set the content pane to a loading screen
             $('#content-pane').html('<div class="loading">loading data<span class="dot-1">.</span><span class="dot-2">.</span><span class="dot-3">.</span></div>');
-
             //Load the data in using jQuerys ajax call
-
-
 
             if (routerLocation == 'productAction'){
               // If product? Add later.
