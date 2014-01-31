@@ -129,6 +129,12 @@ body {
 	background: url(/app/images/purty_wood.png);
 }
 
+img.lazy {
+  opacity: 0;
+  transition: opacity .3s ease-in;
+} 
+
+
 #primary-navigation {
   position: absolute;
   top: 0;

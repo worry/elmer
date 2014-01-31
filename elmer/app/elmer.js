@@ -37,7 +37,7 @@
             var restfulPageUrl = this.restfulUrl + 'products/' + product + '.jsonp';
             //Now we have a url lets get the data
             this.loadRestfulData(restfulPageUrl);
-                console.log('product action');
+                // console.log('product action');
 
         },
         fullAction:function (category) {
@@ -48,9 +48,16 @@
             categoryList = category.replace(/\//g,'_');
             $('body').addClass('nav' + categoryList);
             this.loadRestfulData(restfulPageUrl);
-            console.log(restfulPageUrl);
-            console.log(category);
-            console.log('full action');
+            // Stub for lazy loader.
+            $("img.lazy").unveil(200, function() {
+              $(this).load(function() {
+                this.style.opacity = 1;
+              });
+            });
+
+            // console.log(restfulPageUrl);
+            // console.log(category);
+            // console.log('full action');
         },
         loadRestfulData:function (pageUrl) {
             //Set the content pane to a loading screen
@@ -86,18 +93,20 @@
                       function (el, i) {
                         // Mash, cut and strip my way to a url that matches something in my routes.
                         var product_category_url = el.url.replace("https://api.svpply.com/v1/", "#").replace(".json", "");
-                        console.log('categoryURL: ' + product_category_url);
+                        // console.log('categoryURL: ' + product_category_url);
                         var categorySingle = '<li><a href=' + product_category_url + '>' + el.name + '</a></li>';
                         product_category_list = product_category_list + categorySingle;
                       });
-                      console.log (product_category_list);
+                      // console.log (product_category_list);
                       $('#content-pane').html(
                         function() {
+                          product.user = product.user || {id: 'boursier', avatar: 'https://s3.amazonaws.com/assets.svpply.com/avatars/44157.png', display_name: 'boursier' }
+
                           var productSingle = [
                           '<nav class="category-nav">', product_category_list,
                           '</nav><section class="product-details">',
                           '<a href=', product.buy_url,
-                          ' target="_blank"><img src=', product.image,
+                          ' target="_blank"><img class="lazy" src="/app/images/load.png" data-src=', product.image,
                           '><br /><h2>', product.page_title,
                           '</h2>',
                           '</a><div class="product-details-content"> <a class="user-avatar" href="http://svpply.com/', product.user.id,
@@ -113,8 +122,13 @@
                           '</a></span></li></ul></div></section>'].join('');
                           return productSingle;
                         }
-
                       );
+                      // Stub for lazy loader.
+                      $("img.lazy").unveil(200, function() {
+                        $(this).load(function() {
+                          this.style.opacity = 1;
+                        });
+                      });
                       $('body').addClass('product-view').animate({ scrollTop: 0 }, "slow");
                   }
               });
@@ -125,7 +139,7 @@
                   url:pageUrl,
                   dataType:'jsonp',
                   success:function (data) {
-                    console.log('fullAction');
+                    // console.log('fullAction');
                       //Once we receive the data, set it to the content pane.
                       // console.log(data);
                       // console.log(data.response.product.page_title);
@@ -138,12 +152,13 @@
                       var product_list = '';
                       category.products.forEach(
                       function (el, i) {
+                        el.user = el.user || {id: 'boursier', avatar: 'https://s3.amazonaws.com/assets.svpply.com/avatars/44157.png', display_name: 'boursier' }
                         var productSingle = [
                         '<li><a href=#products/', el.id,
-                        '><img src=', el.image,
+                        '><img class="lazy" src="/app/images/load.png" data-src=', el.image,
                         ' /><span class="page-title">', el.page_title,
                         '</span></a> <a class="user-avatar" href="http://svpply.com/', el.user.id,
-                        '" target="_blank"><img src=', el.user.avatar,
+                        '" target="_blank"><img class="lazy" src="/app/images/load.png" data-src=', el.user.avatar,
                         ' /><span class="user-name">', el.user.display_name, 
                         '</span></a> </li>'].join('');
                         product_list = product_list + productSingle;
@@ -158,8 +173,13 @@
                         ].join('');
                           return productSingle;
                         }
-
                       );
+                      // Stub for lazy loader.
+                      $("img.lazy").unveil(200, function() {
+                        $(this).load(function() {
+                          this.style.opacity = 1;
+                        });
+                      });
                   }
               });
 
