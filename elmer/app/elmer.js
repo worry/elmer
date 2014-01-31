@@ -177,6 +177,7 @@
                       // Stub for lazy loader.
                       $("img.lazy").unveil(200, function() {
                         $(this).load(function() {
+                          this.parentNode.parentNode.style.opacity = 1;
                           this.style.opacity = 1;
                         });
                       });

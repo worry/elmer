@@ -125,7 +125,8 @@ body {
   background: url(/app/images/purty_wood.png);
 }
 
-/* line 132, ../sass/screen.scss */
+/* line 133, ../sass/screen.scss */
+.category-list li,
 img.lazy {
   opacity: 0;
   transition: opacity .3s ease-in;
