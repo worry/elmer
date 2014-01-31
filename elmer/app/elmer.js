@@ -155,10 +155,10 @@
                         el.user = el.user || {id: 'boursier', avatar: 'https://s3.amazonaws.com/assets.svpply.com/avatars/44157.png', display_name: 'boursier' }
                         var productSingle = [
                         '<li><a href=#products/', el.id,
-                        '><img class="lazy" src="/app/images/load.png" data-src=', el.image,
+                        '><img class="lazy-product" src="/app/images/load.png" data-src=', el.image,
                         ' /><span class="page-title">', el.page_title,
                         '</span></a> <a class="user-avatar" href="http://svpply.com/', el.user.id,
-                        '" target="_blank"><img class="lazy" src="/app/images/load.png" data-src=', el.user.avatar,
+                        '" target="_blank"><img class="lazy" src="/app/images/avatar.png" data-src=', el.user.avatar,
                         ' /><span class="user-name">', el.user.display_name, 
                         '</span></a> </li>'].join('');
                         product_list = product_list + productSingle;
@@ -175,10 +175,12 @@
                         }
                       );
                       // Stub for lazy loader.
-                      $("img.lazy").unveil(200, function() {
+                      $("img.lazy-product").unveil(200, function() {
                         $(this).load(function() {
                           this.parentNode.parentNode.style.opacity = 1;
-                          this.style.opacity = 1;
+                          $("img.lazy").unveil(0, function() {
+                              this.style.opacity = 1;
+                          });
                         });
                       });
                   }
