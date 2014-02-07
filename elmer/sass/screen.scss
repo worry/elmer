@@ -139,6 +139,17 @@ img.lazy {
   position: absolute;
   top: 0;
 }
+#primary-navigation,
+.category-nav {
+}
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+nav {
+  position: relative;
+  max-width: 100%;
+}
 
 .product-view #primary-navigation {
   margin-top: -8.5em;
@@ -903,7 +914,9 @@ margin-top: -80px;
 		}
 	}
 }
-
+body {
+  overflow-x: hidden;
+}
 .category-list {
 	width: 100%;
 	list-style: none;
